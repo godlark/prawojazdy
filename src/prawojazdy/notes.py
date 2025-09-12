@@ -5,14 +5,11 @@ from typing import Optional, List
 
 import pandas as pd
 
-from conversion import convert_to_webm
-from media import get_media_type, MediaType
+from prawojazdy.conversion import convert_to_webm
+from prawojazdy.media import get_media_type, MediaType
 
 from templates import Model
 
-
-media_dir_new = "./media"
-skip_existing = True
 crf_value = "26"
 
 @dataclass
@@ -26,24 +23,27 @@ class Note:
     media: Optional[str]
 
 
-def handle_media(note: Note) -> Note:
+def handle_media(note: Note, media_dir_new, skip_existing_media) -> Note:
     if not note.media:
         return note
 
     filename = os.path.basename(note.media)
+    handle = lambda: None
     if note.media_type == MediaType.Video:
         if not note.media.lower().endswith(".webm"):
             media_new_name = "prawojazdy_" + os.path.splitext(filename)[0] + ".webm"
             dest_path = os.path.join(media_dir_new, media_new_name)
-            convert_to_webm(note.media, dest_path, crf_value)
+            handle = lambda: convert_to_webm(note.media, dest_path, crf_value)
         else:
             media_new_name = "prawojazdy_" + filename
             dest_path = os.path.join(media_dir_new, media_new_name)
-            shutil.copy(note.media, dest_path)
+            handle = lambda: shutil.copy(note.media, dest_path)
     else:
         media_new_name = "prawojazdy_" + filename
         dest_path = os.path.join(media_dir_new, media_new_name)
-        shutil.copy(note.media, dest_path)
+        handle = lambda: shutil.copy(note.media, dest_path)
+    if not os.path.exists(dest_path) or not skip_existing_media:
+        handle()
     return Note(note.id, note.question, note.correct_answer, note.model, note.additional_fields, note.media_type, dest_path)
 
 

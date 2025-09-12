@@ -1,0 +1,76 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "prawojazdy"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Sławomir Domagała", email = "slawomir.karol.domagala@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+    "genanki",
+    "numpy",
+    "openpyxl",
+    "pandas",
+]
+
+[project.urls]
+Documentation = "https://github.com/Sławomir Domagała/prawojazdy#readme"
+Issues = "https://github.com/Sławomir Domagała/prawojazdy/issues"
+Source = "https://github.com/Sławomir Domagała/prawojazdy"
+
+[tool.hatch.version]
+path = "src/prawojazdy/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/prawojazdy tests}"
+
+[tool.coverage.run]
+source_pkgs = ["prawojazdy", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/prawojazdy/__about__.py",
+]
+
+[tool.coverage.paths]
+prawojazdy = ["src/prawojazdy", "*/prawojazdy/src/prawojazdy"]
+tests = ["tests", "*/prawojazdy/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.hatch.envs.default.scripts]
+download_visuals = ["./scripts/download_visuals.sh"]
+unpack_visuals = ["./scripts/unpack_visuals.sh"]
+generate_deck = ["""python src/prawojazdy/main.py \
+  katalog_pytania_egzminacyjne_kandydat__14112024.xlsx \
+  "visuals/wizualizacje do pytań_18_01_2024_" \
+  media \
+  "$([ -f visuals/.unpackaged_new_file ] && echo False || echo True)" """, "rm -f visuals/.unpackaged_new_file"]
+release = ["download_visuals", "unpack_visuals", "generate_deck"]

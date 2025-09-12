@@ -6,7 +6,7 @@ import genanki
 from genanki import Deck
 from pandas import Series
 
-from media import MediaType
+from prawojazdy.media import MediaType
 from notes import create_note
 from notes import handle_media
 from templates import generate_card_side, Model, CardSide
@@ -48,12 +48,12 @@ model2 = genanki.Model(
     ],
 )
 
-def generate_deck(rows: Iterable[Series], media_dir: str) -> tuple[Deck, list[str]]:
+def generate_deck(rows: Iterable[Series], media_dir: str, new_media_dir: str, skip_existing_media: bool) -> tuple[Deck, list[str]]:
     deck = genanki.Deck(random.randrange(1 << 30, 1 << 31), "Prawo Jazdy - teoria B")
     media_files = []
 
     for row in rows:
-        note_data = handle_media(create_note(media_dir, row))
+        note_data = handle_media(create_note(media_dir, row), new_media_dir, skip_existing_media)
         if note_data.media:
             media_files.append(note_data.media)
 

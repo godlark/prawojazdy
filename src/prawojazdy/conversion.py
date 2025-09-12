@@ -15,7 +15,7 @@ def convert_to_webm(source_file, dest_path, crf_value):
     ], check=True)
     # Second pass
     subprocess.run([
-        "ffmpeg",
+        "ffmpeg", "-y",
         "-i", source_file,
         "-c:v", "libvpx-vp9",
         "-b:v", "0",
