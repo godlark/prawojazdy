@@ -1,0 +1,14 @@
+<div class="media-wrapper">
+    {{#Video}}
+        <video>
+            <source src="{{Video}}" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+    {{/Video}}
+    {{#Image}}
+        <img src='{{Image}}'>
+    {{/Image}}
+    {{#Audio}}
+        [sound:{{Audio}}]
+    {{/Audio}}
+</div>

@@ -1,0 +1,30 @@
+<div class="top">
+    <div class="question">
+        <span class="note">Pytanie:&nbsp;</span>
+        <span>{{Question}}</span>
+    </div>
+    <div class="timer1-container">
+        <span class="note">Czas na zapoznanie się z pytaniem:&nbsp;</span>
+        <span>
+   		        <span class="timer1 general-timer animate"></span>&nbsp;sekund
+            </span>
+    </div>
+    <div class="timer2-container">
+        <span class="note">Czas na udzielenie odpowiedzi:&nbsp;</span>
+        <span>
+                <span class="timer2 general-timer"></span>&nbsp;sekund
+            </span>
+    </div>
+    <div class="answer">
+        <span class="note">Odpowiedź:&nbsp;</span>
+        <div class="answer-input">
+            <label>
+                <input type="radio" name="answer" value="Tak" onclick="updateInput(this.value)"> Tak
+            </label>
+            <label>
+                <input type="radio" name="answer" value="Nie" onclick="updateInput(this.value)"> Nie
+            </label>
+            <span class="input">{{type:Answer}}</span>
+        </div>
+    </div>
+</div>

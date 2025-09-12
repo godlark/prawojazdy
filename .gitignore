@@ -1,0 +1,8 @@
+wiz
+.venv
+media
+__pycache__
+.DS_Store
+.idea
+*.log
+prawo_jazdy.apkg
