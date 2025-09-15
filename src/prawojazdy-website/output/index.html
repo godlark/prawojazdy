@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Darmowa Nauka Prawo Jazdy - Strona główna</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="theme/css/main.css" />
+		<noscript><link rel="stylesheet" href="theme/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+
+<!-- Sidebar -->
+<section id="sidebar">
+    <div class="inner">
+        <nav>
+            <ul>
+                <li><a href="#intro">Welcome</a></li>
+                <li><a href="#readme">README</a></li>
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<!-- Wrapper -->
+<div id="wrapper">
+
+    <!-- Intro -->
+    <section id="intro" class="wrapper style1 fullscreen fade-up">
+        <div class="inner">
+            <h1>Hyperspace</h1>
+            <p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br/>
+                and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
+            <ul class="actions">
+                <li><a href="#one" class="button scrolly">Learn more</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="readme" class="wrapper style2 fade-up">
+        <section>
+            <a href="#" class="image"><img src="theme/images/pic01.jpg" alt=""
+                                           data-position="center center"/></a>
+            <div class="content">
+                <div class="inner">
+                    <h2>README</h2>
+                    <h1>PrawoJazdy</h1>
+<p>🌍 Języki: <a href="README.md">English</a> | <a href="README.pl.md">Polski</a></p>
+<p>PrawoJazdy to system generowania materiałów edukacyjnych oparty na Pythonie, zaprojektowany do tworzenia materiałów do nauki do egzaminu na prawo jazdy. Projekt koncentruje się na generowaniu kart do nauki zawierających zarówno treści tekstowe, jak i materiały wizualne, tworząc plik talii kompatybilny z Anki (<code>.apkg</code>).</p>
+<h2>Funkcje</h2>
+<ul>
+<li>Generowanie kart w oparciu o system szablonów z wykorzystaniem systemu Enum w Pythonie</li>
+<li>Obsługa dwóch typów pytań:</li>
+<li>Pytania Tak/Nie (Model 1)</li>
+<li>Pytania wielokrotnego wyboru A/B/C (Model 2)</li>
+<li>Obsługa różnych typów mediów:</li>
+<li>Obrazy</li>
+<li>Filmy (z automatyczną konwersją do WebM)</li>
+<li>Pliki audio</li>
+<li>Inteligentne zarządzanie mediami:</li>
+<li>Automatyczne wykrywanie typu mediów</li>
+<li>Konwersja wideo do formatu WebM przy użyciu ffmpeg (2-przejściowe kodowanie VP9)</li>
+<li>Inteligentne nazewnictwo i organizacja plików multimedialnych</li>
+<li>Standardowe formatowanie treści z wykorzystaniem pandas DataFrame</li>
+<li>Integracja z ponad 1500 materiałami wizualnymi</li>
+<li>Automatyczne generowanie talii z plików Excel</li>
+<li>Kompatybilność z różnymi platformami (Linux/macOS)</li>
+<li>Niestandardowe szablony kart HTML/JS z responsywnym designem</li>
+</ul>
+<h2>Wymagania</h2>
+<ul>
+<li>Python &gt;=3.8</li>
+<li>Główne zależności:</li>
+<li>pandas - Przetwarzanie i manipulacja danymi</li>
+<li>genanki - Generowanie talii Anki</li>
+<li>numpy - Operacje numeryczne</li>
+<li>openpyxl - Obsługa plików Excel</li>
+<li>Wymagania systemowe:</li>
+<li>Linux: narzędzie unzip, ffmpeg</li>
+<li>macOS: narzędzie unar, ffmpeg</li>
+<li>Anki - Do korzystania z wygenerowanej talii</li>
+</ul>
+<h2>Użytkowanie</h2>
+<p>Projekt dostarcza kilka skryptów wiersza poleceń do zarządzania zasobami wizualnymi i generowania talii:</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>Pobierz<span class="w"> </span>wymagane<span class="w"> </span>zasoby<span class="w"> </span>wizualne<span class="w"> </span><span class="o">(</span>sprawdza<span class="w"> </span>rozmiar<span class="w"> </span>pliku<span class="w"> </span>zdalnego<span class="w"> </span>pod<span class="w"> </span>kątem<span class="w"> </span>aktualizacji<span class="o">)</span>
+<span class="go">hatch run download_visuals</span>
+
+<span class="gp"># </span>Rozpakuj<span class="w"> </span>pobrane<span class="w"> </span>zasoby<span class="w"> </span>wizualne<span class="w"> </span><span class="o">(</span>obsługuje<span class="w"> </span>Linux<span class="w"> </span>i<span class="w"> </span>macOS<span class="o">)</span>
+<span class="go">hatch run unpack_visuals</span>
+
+<span class="gp"># </span>Wygeneruj<span class="w"> </span>talię<span class="w"> </span>z<span class="w"> </span>pliku<span class="w"> </span>Excel
+<span class="go">hatch run generate_deck</span>
+
+<span class="gp"># </span>Kompletny<span class="w"> </span>proces<span class="w"> </span><span class="o">(</span>pobieranie,<span class="w"> </span>rozpakowywanie,<span class="w"> </span>generowanie<span class="o">)</span>
+<span class="go">hatch run release</span>
+</code></pre></div>
+
+<h3>Zarządzanie Zasobami</h3>
+<p>Projekt zawiera inteligentne skrypty do zarządzania zasobami:</p>
+<ol>
+<li><code>download_visuals.sh</code>:</li>
+<li>Pobiera zasoby wizualne z oficjalnej strony rządowej</li>
+<li>Sprawdza rozmiar pliku zdalnego, aby uniknąć niepotrzebnych pobrań</li>
+<li>Obsługuje sprawdzanie rozmiaru plików na Linux i macOS</li>
+<li>
+<p>Tworzy plik flagi do śledzenia nowych pobrań</p>
+</li>
+<li>
+<p><code>unpack_visuals.sh</code>:</p>
+</li>
+<li>Automatycznie rozpakowuje pobrane zasoby wizualne</li>
+<li>Świadome systemu operacyjnego rozpakowywanie (używa unar na macOS, unzip na Linux)</li>
+<li>Śledzi status rozpakowywania za pomocą plików flag</li>
+<li>
+<p>Rozpakowuje tylko gdy dostępna jest nowa zawartość</p>
+</li>
+<li>
+<p><code>generate_deck</code>:</p>
+</li>
+<li>Przetwarza plik Excel z pytaniami egzaminacyjnymi</li>
+<li>Integruje pobrane zasoby wizualne</li>
+<li>Tworzy karty do nauki z tekstem i wizualizacjami</li>
+<li>Generuje plik talii kompatybilny z Anki (<code>prawo_jazdy.apkg</code>)</li>
+<li>Źródło: <code>katalog_pytania_egzminacyjne_kandydat__14112024.xlsx</code></li>
+</ol>
+<h3>Generowane Pliki</h3>
+<ul>
+<li><code>prawo_jazdy.apkg</code> - Talia Anki zawierająca pytania i zasoby wizualne</li>
+<li><code>.log</code> - Różne logi operacji (ignorowane przez git)</li>
+<li><code>downloads/</code> - Tymczasowy katalog na pobrane zasoby</li>
+<li><code>media/</code> - Przetworzone pliki multimedialne z prefiksami</li>
+<li><code>visuals/</code> - Rozpakowane zasoby wizualne</li>
+</ul>
+<h2>Struktura Projektu</h2>
+<div class="highlight"><pre><span></span><code><span class="o">.</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">src</span><span class="o">/</span><span class="n">prawojazdy</span><span class="o">/</span><span class="w">           </span><span class="c1"># Główny pakiet Python</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">__about__</span><span class="o">.</span><span class="n">py</span><span class="w">        </span><span class="c1"># Informacje o wersji</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">conversion</span><span class="o">.</span><span class="n">py</span><span class="w">       </span><span class="c1"># Narzędzia konwersji mediów (wrapper ffmpeg)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">decks</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Generowanie talii Anki</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">main</span><span class="o">.</span><span class="n">py</span><span class="w">            </span><span class="c1"># Główna logika generowania talii</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">media</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Wykrywanie i obsługa typów mediów</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">notes</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Tworzenie notatek i przetwarzanie mediów</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">templates</span><span class="o">.</span><span class="n">py</span><span class="w">       </span><span class="c1"># Generowanie szablonów kart</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">templates</span><span class="o">/</span><span class="w">         </span><span class="c1"># Szablony HTML/JS/CSS kart</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">media</span><span class="o">/</span><span class="w">                  </span><span class="c1"># Zasoby medialne (ignorowane przez git)</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">scripts</span><span class="o">/</span><span class="w">                </span><span class="c1"># Skrypty narzędziowe do zarządzania zasobami</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">tests</span><span class="o">/</span><span class="w">                 </span><span class="c1"># Katalog testów</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">downloads</span><span class="o">/</span><span class="w">              </span><span class="c1"># Pobrane zasoby (ignorowane przez git)</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">visuals</span><span class="o">/</span><span class="w">               </span><span class="c1"># Zasoby wizualne do pytań (ignorowane przez git)</span>
+<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="n">wizualizacje</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">pytań_18_01_2024_</span><span class="o">/</span><span class="w">  </span><span class="c1"># Ponad 1500 zasobów wizualnych</span>
+</code></pre></div>
+
+<h2>Główne Komponenty</h2>
+<h3>System Generowania Kart</h3>
+<ul>
+<li>Obsługa dwóch modeli pytań:</li>
+<li>Model 1: Pytania Tak/Nie</li>
+<li>Model 2: Pytania wielokrotnego wyboru (A/B/C)</li>
+<li>Niestandardowe szablony HTML z rozszerzeniami JavaScript</li>
+<li>Responsywny design dla lepszej czytelności</li>
+</ul>
+<h4>Struktura i Zachowanie Kart</h4>
+<ol>
+<li>Komponenty Przedniej Strony:</li>
+<li>Wyświetlanie tekstu pytania</li>
+<li>Dwufazowy system czasowy:<ul>
+<li>Faza 1: Czas na zapoznanie się z pytaniem</li>
+<li>Faza 2: Czas na odpowiedź</li>
+</ul>
+</li>
+<li>Wyświetlanie mediów (jeśli obecne):<ul>
+<li>Obrazy: Wyświetlane natychmiast</li>
+<li>Filmy: Automatyczne odtwarzanie po zakończeniu pierwszej fazy</li>
+<li>Audio: Standardowy tag Anki [sound:]</li>
+</ul>
+</li>
+<li>Wprowadzanie odpowiedzi:<ul>
+<li>Model 1: Przyciski radio "Tak"/"Nie"</li>
+<li>Model 2: Przyciski radio A/B/C z tekstem odpowiedzi</li>
+</ul>
+</li>
+<li>
+<p>Warstwa kompatybilności Desktop i AnkiDroid</p>
+</li>
+<li>
+<p>Komponenty Tylnej Strony:</p>
+</li>
+<li>Tekst pytania</li>
+<li>Wyświetlanie poprawnej odpowiedzi</li>
+<li>Wyświetlanie mediów z kontrolkami:<ul>
+<li>Filmy: Pokazuje ostatnią klatkę z kontrolkami odtwarzania</li>
+<li>Obrazy: Pełne wyświetlanie obrazu</li>
+<li>Audio: Kontrolki odtwarzania</li>
+</ul>
+</li>
+<li>
+<p>Specyficzne dla Modelu 2: Wszystkie opcje odpowiedzi (A/B/C)</p>
+</li>
+<li>
+<p>Funkcje Interaktywne:</p>
+</li>
+<li>Automatyczne odtwarzanie wideo po czasie na przeczytanie</li>
+<li>Animacje timerów dla faz czytania i odpowiadania</li>
+<li>Walidacja wprowadzanych odpowiedzi</li>
+<li>Kontrolki wideo na stronie odpowiedzi</li>
+<li>
+<p>Obsługa różnych platform</p>
+</li>
+<li>
+<p>Obsługa Mediów:</p>
+</li>
+<li>Strona przednia:<ul>
+<li>Filmy: Automatyczne odtwarzanie bez kontrolek</li>
+<li>Obrazy: Bezpośrednie wyświetlanie</li>
+<li>Audio: Standardowe odtwarzanie Anki</li>
+</ul>
+</li>
+<li>Strona tylna:<ul>
+<li>Filmy: Ostatnia klatka z kontrolkami</li>
+<li>Obrazy: Wyświetlanie referencyjne</li>
+<li>Audio: Standardowe odtwarzanie Anki</li>
+</ul>
+</li>
+</ol>
+<h3>Przetwarzanie Mediów</h3>
+<ul>
+<li>Automatyczne wykrywanie typu mediów (wideo/obraz/audio)</li>
+<li>Konwersja wideo do formatu WebM przy użyciu ffmpeg:</li>
+<li>Kodek wideo VP9 z kodowaniem 2-przejściowym</li>
+<li>Kodek audio Opus (128k)</li>
+<li>Konfigurowalny parametr CRF (domyślnie: 26)</li>
+<li>Inteligentne nazewnictwo plików z prefiksem "prawojazdy_"</li>
+</ul>
+<h3>Przetwarzanie Danych</h3>
+<ul>
+<li>Parsowanie plików Excel przy użyciu pandas</li>
+<li>Strukturalne przetwarzanie pytań i odpowiedzi</li>
+<li>Automatyczny wybór modelu na podstawie typu odpowiedzi</li>
+</ul>
+<h2>Rozwój</h2>
+<p>Ten projekt używa <a href="https://hatch.pypa.io/">Hatch</a> do zarządzania środowiskiem deweloperskim. Główne komendy deweloperskie:</p>
+<div class="highlight"><pre><span></span><code><span class="gp"># </span>Sprawdzanie<span class="w"> </span>typów
+<span class="go">hatch run types:check</span>
+
+<span class="gp"># </span>Pokrycie<span class="w"> </span>testami
+<span class="go">hatch run cov</span>
+</code></pre></div>
+
+<h3>Źródła Danych</h3>
+<p>Projekt wykorzystuje oficjalne materiały egzaminacyjne z polskiego rządu:
+- Zasoby wizualne: <code>https://www.gov.pl/pliki/mi/wizualizacje_do_pytan_18_01_2024.zip</code>
+- Katalog pytań: <code>katalog_pytania_egzminacyjne_kandydat__14112024.xlsx</code></p>
+<h3>Uwaga dla Deweloperów</h3>
+<p>Główna logika przetwarzania w <code>main.py</code> obecnie przetwarza pierwsze 10 wierszy bazy pytań w celach testowych. Aby przetworzyć cały zestaw danych, zmodyfikuj funkcję <code>take_first_10_rows</code> lub jej użycie w funkcji main.</p>
+<h3>Format Pliku Excel</h3>
+<p>Oczekiwany format pliku Excel powinien zawierać następujące kolumny:
+- "Numer pytania" - ID pytania
+- "Pytanie" - Tekst pytania
+- "Poprawna odp" - Poprawna odpowiedź ("Tak"/"Nie" lub "A"/"B"/"C")
+- "Media" - Ścieżka do pliku multimedialnego (opcjonalne)
+- "Odpowiedź A" - Opcja A (dla pytań wielokrotnego wyboru)
+- "Odpowiedź B" - Opcja B (dla pytań wielokrotnego wyboru)
+- "Odpowiedź C" - Opcja C (dla pytań wielokrotnego wyboru)</p>
+<h2>Licencja</h2>
+<p>Ten projekt używa modelu podwójnej licencji:</p>
+<ul>
+<li><strong>Kod</strong>: Licencjonowany na <a href="LICENSE_CODE.txt">LGPL-3.0-or-later</a></li>
+<li><strong>Wygenerowana zawartość (talie, materiały do nauki)</strong>: Licencjonowane na <a href="LICENSE_CONTENT.txt">CC-BY-NC-SA-4.0</a></li>
+</ul>
+<p>Oznacza to:
+- Jeśli modyfikujesz i rozpowszechniasz kod, musisz również udostępnić swoje modyfikacje na licencji LGPL.
+- Możesz swobodnie używać i udostępniać wygenerowane talie kart do celów osobistych i edukacyjnych, ale <strong>użycie komercyjne jest zabronione</strong>. Wszelkie prace pochodne muszą być również udostępniane na tej samej licencji.</p>
+<h2>Autor</h2>
+<p>Sławomir Domagała (slawomir.karol.domagala@gmail.com)</p>
+<h2>Linki</h2>
+<ul>
+<li><a href="https://github.com/godlark/prawojazdy#readme">Dokumentacja</a></li>
+<li><a href="https://github.com/godlark/prawojazdy/issues">Zgłoszenia</a></li>
+<li><a href="https://github.com/godlark/prawojazdy">Kod źródłowy</a></li>
+</ul>
+                </div>
+            </div>
+        </section>
+    </section>
+
+</div>
+
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="theme/js/jquery.min.js"></script>
+			<script src="theme/js/jquery.scrollex.min.js"></script>
+			<script src="theme/js/jquery.scrolly.min.js"></script>
+			<script src="theme/js/browser.min.js"></script>
+			<script src="theme/js/breakpoints.min.js"></script>
+			<script src="theme/js/util.js"></script>
+			<script src="theme/js/main.js"></script>
+
+	</body>
+</html>

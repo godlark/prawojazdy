@@ -26,9 +26,11 @@ classifiers = [
 ]
 dependencies = [
     "genanki",
+    "markdown",
     "numpy",
     "openpyxl",
     "pandas",
+    "pelican",
 ]
 
 [project.urls]
