@@ -1,6 +1,6 @@
 # PrawoJazdy
 
-🌍 Języki: [English](README.md) | [Polski](README.pl.md)
+Języki: [English](README.md) | [Polski](README.pl.md)
 
 PrawoJazdy to system generowania materiałów edukacyjnych oparty na Pythonie, zaprojektowany do tworzenia materiałów do nauki do egzaminu na prawo jazdy. Projekt koncentruje się na generowaniu kart do nauki zawierających zarówno treści tekstowe, jak i materiały wizualne, tworząc plik talii kompatybilny z Anki (`.apkg`).
 

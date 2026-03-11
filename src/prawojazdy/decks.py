@@ -1,5 +1,6 @@
 import os
 import random
+from concurrent.futures import ThreadPoolExecutor
 from typing import Iterable
 
 import genanki
@@ -15,7 +16,9 @@ model1 = genanki.Model(
     random.randrange(1 << 30, 1 << 31),
     "Prawo Jazdy - Tak/Nie",
     fields=[{"name": "Question ID"}, {"name": "Question"}, {"name": "Answer"},
-            {"name": "Video"}, {"name": "Image"}, {"name": "Audio"}],
+            {"name": "Video"}, {"name": "Image"}, {"name": "Audio"}, {"name": "VideoSrc"},
+            {"name": "ImageSrc"},
+            {"name": "AudioSrc"}, ],
     templates=[
         {
             "name": "Card 1",
@@ -35,6 +38,9 @@ model2 = genanki.Model(
         {"name": "Video"},
         {"name": "Image"},
         {"name": "Audio"},
+        {"name": "VideoSrc"},
+        {"name": "ImageSrc"},
+        {"name": "AudioSrc"},
         {"name": "AnswerA"},
         {"name": "AnswerB"},
         {"name": "AnswerC"},
@@ -48,12 +54,18 @@ model2 = genanki.Model(
     ],
 )
 
-def generate_deck(rows: Iterable[Series], media_dir: str, new_media_dir: str, skip_existing_media: bool) -> tuple[Deck, list[str]]:
+def generate_deck(rows: Iterable[Series], media_dir: str, new_media_dir: str) -> tuple[Deck, list[str]]:
     deck = genanki.Deck(random.randrange(1 << 30, 1 << 31), "Prawo Jazdy - teoria B")
     media_files = []
 
-    for row in rows:
-        note_data = handle_media(create_note(media_dir, row), new_media_dir, skip_existing_media)
+    def process_row(row):
+        return handle_media(create_note(media_dir, row), new_media_dir)
+
+    with ThreadPoolExecutor() as executor:
+        note_datas = list(executor.map(process_row, rows))
+
+    for note_data in note_datas:
+        print(note_data)
         if note_data.media:
             media_files.append(note_data.media)
 
@@ -65,15 +77,30 @@ def generate_deck(rows: Iterable[Series], media_dir: str, new_media_dir: str, sk
             case _:
                 raise ValueError(f"Unexpected model: {note_data.model}")
 
+        video = os.path.basename(note_data.media) if note_data.media_type == MediaType.Video else ""
+        image = os.path.basename(note_data.media) if note_data.media_type == MediaType.Image else ""
+        audio = os.path.basename(note_data.media) if note_data.media_type == MediaType.Audio else ""
         note = genanki.Note(
             model=model,
             fields=[
                 note_data.id,
                 note_data.question,
                 note_data.correct_answer,
-                os.path.basename(note_data.media) if note_data.media_type == MediaType.Video else "",
-                os.path.basename(note_data.media) if note_data.media_type == MediaType.Image else "",
-                os.path.basename(note_data.media) if note_data.media_type == MediaType.Audio else "",
+                video,
+                image,
+                audio,
+                f"""
+                <video>
+                    <source src="{video}" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+                """,
+                f"""
+                <img src='{image}'>
+                """,
+                f"""
+                [sound:{audio}]
+                """,
                 *note_data.additional_fields
             ]
         )

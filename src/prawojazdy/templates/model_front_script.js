@@ -14,6 +14,7 @@ function updateInput(value) {
 
 {
     let video = document.querySelector(".media-wrapper video");
+    let videoControl = document.querySelector(".media-wrapper .control");
     let timer1 = document.querySelector('.timer1');
     let timer2 = document.querySelector('.timer2');
     timer1.addEventListener('animationend', () => {
@@ -26,6 +27,13 @@ function updateInput(value) {
     if (video) {
         video.addEventListener('ended', () => {
             timer2.classList.add('animate');
+        });
+    }
+    if (videoControl) {
+        videoControl.addEventListener('click', () => {
+            video.play();
+            timer1.classList.remove('general-timer');
+            videoControl.classList.add('hidden');
         });
     }
 }

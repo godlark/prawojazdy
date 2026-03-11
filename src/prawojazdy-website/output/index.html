@@ -6,13 +6,14 @@
 -->
 <html>
 	<head>
-		<title>Darmowa Nauka Prawo Jazdy - Strona główna</title>
+		<title>Darmowa Nauka Prawo Jazdy</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="theme/css/main.css" />
-		<noscript><link rel="stylesheet" href="theme/css/noscript.css" /></noscript>
+		<link rel="stylesheet" href="/theme/css/main.css" />
+		<noscript><link rel="stylesheet" href="/theme/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
+
 
 
 <!-- Sidebar -->
@@ -20,8 +21,12 @@
     <div class="inner">
         <nav>
             <ul>
-                <li><a href="#intro">Welcome</a></li>
-                <li><a href="#readme">README</a></li>
+                <li><a href="#intro">Czym jest PrawoJazdy?</a></li>
+                <li><a href="#2-how-to-start">Jak rozpocząć naukę?</a></li>
+                <li><a href="#3-cards-features">Funkcje i możliwości kart PrawoJazdy</a></li>
+                <li><a href="#4-problems-with-commercial-sites">Problemy z komercyjnymi serwisami do nauki</a></li>
+                <li><a href="#5-why-anki">Dlaczego Anki?</a></li>
+                <li><a href="#6-why-education-should-be-free">Dlaczego edukacja powinna być darmowa?</a></li>
             </ul>
         </nav>
     </div>
@@ -31,261 +36,393 @@
 <div id="wrapper">
 
     <!-- Intro -->
-    <section id="intro" class="wrapper style1 fullscreen fade-up">
+    <section id="intro" class=" wrapper style3 fullscreen fade-up">
         <div class="inner">
-            <h1>Hyperspace</h1>
-            <p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br/>
-                and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
-            <ul class="actions">
-                <li><a href="#one" class="button scrolly">Learn more</a></li>
+            <h1>Czym jest PrawoJazdy?</h1>
+            
+
+<p>
+    Państwowy egzamin teoretyczny na prawo jazdy obejmuje ponad 3000 pytań. Aby skutecznie się do niego przygotować,
+    warto przećwiczyć wszystkie. Tutaj znajdziesz darmową talię zawierającą komplet pytań, stworzoną z myślą
+    o osobach przygotowujących się do egzaminu.
+</p>
+
+<section>
+    <h2>Jak pomoże ci zdać egzamin państwowy?</h2>
+    <p>Łączy naukę oficjalnych pytań egzaminacyjnych z nowoczesnym
+    systemem powtórek programu Anki. A dokładniej:</p>
+    <ul>
+        <li><strong>Oferując zbliżone warunki poprzez:</strong>
+            <ul>
+                <li>naukę na bazie dokładnie tych samych pytań, które pojawiają się na egzaminie,</li>
+                <li>ćwiczenie w warunkach zbliżonych do egzaminacyjnych,</li>
+                <li>korzystanie z identycznych materiałów multimedialnych.</li>
             </ul>
+        </li>
+        <li><strong>Zapewniając efektywną naukę i oszczędzając Twój czas, dzięki</strong>
+            <ul>
+                <li>systemowi powtórek opartemu na sprawdzonym Spaced Repetition System (SRS),</li>
+                <li>automatycznemu dostosowaniu tempa nauki do postępów użytkownika,</li>
+                <li>koncentracji na materiałach sprawiających największą trudność,</li>
+                <li>wspieraniu długoterminowego zapamiętywania, zamiast krótkotrwałego „zakuwania”.</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Dlaczego darmowa?</h2>
+    <p>
+        Talia "PrawoJazdy" bazuje na oficjalnych pytaniach egzaminacyjnych udostępnianych bezpłatnie
+        na stronie ministerstwa. Uważam, że każdy powinien mieć równe szanse dostępu do rzetelnych
+        materiałów egzaminacyjnych, bez konieczności opłacania komercyjnych subskrypcji.
+        Z tego powodu talia została przygotowana dla otwartego, open-source’owego ekosystemu Anki,
+        który daje pełną kontrolę nad procesem nauki, materiałami edukacyjnymi oraz własnymi danymi,
+        a jednocześnie jest rozwijany przez społeczność użytkowników.
+    </p>
+</section>
+
+
         </div>
     </section>
 
-    <section id="readme" class="wrapper style2 fade-up">
-        <section>
-            <a href="#" class="image"><img src="theme/images/pic01.jpg" alt=""
-                                           data-position="center center"/></a>
-            <div class="content">
-                <div class="inner">
-                    <h2>README</h2>
-                    <h1>PrawoJazdy</h1>
-<p>🌍 Języki: <a href="README.md">English</a> | <a href="README.pl.md">Polski</a></p>
-<p>PrawoJazdy to system generowania materiałów edukacyjnych oparty na Pythonie, zaprojektowany do tworzenia materiałów do nauki do egzaminu na prawo jazdy. Projekt koncentruje się na generowaniu kart do nauki zawierających zarówno treści tekstowe, jak i materiały wizualne, tworząc plik talii kompatybilny z Anki (<code>.apkg</code>).</p>
-<h2>Funkcje</h2>
-<ul>
-<li>Generowanie kart w oparciu o system szablonów z wykorzystaniem systemu Enum w Pythonie</li>
-<li>Obsługa dwóch typów pytań:</li>
-<li>Pytania Tak/Nie (Model 1)</li>
-<li>Pytania wielokrotnego wyboru A/B/C (Model 2)</li>
-<li>Obsługa różnych typów mediów:</li>
-<li>Obrazy</li>
-<li>Filmy (z automatyczną konwersją do WebM)</li>
-<li>Pliki audio</li>
-<li>Inteligentne zarządzanie mediami:</li>
-<li>Automatyczne wykrywanie typu mediów</li>
-<li>Konwersja wideo do formatu WebM przy użyciu ffmpeg (2-przejściowe kodowanie VP9)</li>
-<li>Inteligentne nazewnictwo i organizacja plików multimedialnych</li>
-<li>Standardowe formatowanie treści z wykorzystaniem pandas DataFrame</li>
-<li>Integracja z ponad 1500 materiałami wizualnymi</li>
-<li>Automatyczne generowanie talii z plików Excel</li>
-<li>Kompatybilność z różnymi platformami (Linux/macOS)</li>
-<li>Niestandardowe szablony kart HTML/JS z responsywnym designem</li>
-</ul>
-<h2>Wymagania</h2>
-<ul>
-<li>Python &gt;=3.8</li>
-<li>Główne zależności:</li>
-<li>pandas - Przetwarzanie i manipulacja danymi</li>
-<li>genanki - Generowanie talii Anki</li>
-<li>numpy - Operacje numeryczne</li>
-<li>openpyxl - Obsługa plików Excel</li>
-<li>Wymagania systemowe:</li>
-<li>Linux: narzędzie unzip, ffmpeg</li>
-<li>macOS: narzędzie unar, ffmpeg</li>
-<li>Anki - Do korzystania z wygenerowanej talii</li>
-</ul>
-<h2>Użytkowanie</h2>
-<p>Projekt dostarcza kilka skryptów wiersza poleceń do zarządzania zasobami wizualnymi i generowania talii:</p>
-<div class="highlight"><pre><span></span><code><span class="gp"># </span>Pobierz<span class="w"> </span>wymagane<span class="w"> </span>zasoby<span class="w"> </span>wizualne<span class="w"> </span><span class="o">(</span>sprawdza<span class="w"> </span>rozmiar<span class="w"> </span>pliku<span class="w"> </span>zdalnego<span class="w"> </span>pod<span class="w"> </span>kątem<span class="w"> </span>aktualizacji<span class="o">)</span>
-<span class="go">hatch run download_visuals</span>
+    <section id="2-how-to-start" class=" wrapper style1 fade-up">
+        <div class="inner">
+            <h1>Jak rozpocząć naukę?</h1>
+            
 
-<span class="gp"># </span>Rozpakuj<span class="w"> </span>pobrane<span class="w"> </span>zasoby<span class="w"> </span>wizualne<span class="w"> </span><span class="o">(</span>obsługuje<span class="w"> </span>Linux<span class="w"> </span>i<span class="w"> </span>macOS<span class="o">)</span>
-<span class="go">hatch run unpack_visuals</span>
+<section>
+    <h2>1. Pobierz aplikacje</h2>
+    <p>Podstawą jest aplikacja Anki, dostępna na wszystkie najpopularniejsze platformy:</p>
+    <ul>
+        <li><a href="https://apps.ankiweb.net/">Anki Desktop</a> – darmowa aplikacja na komputer (Windows, macOS, Linux);</li>
+        <li><a href="https://play.google.com/store/apps/details?id=com.ichi2.anki">AnkiDroid</a> – darmowa aplikacja na Androida;</li>
+        <li><a href="https://ankiweb.net/">AnkiWeb</a> – darmowa wersja przeglądarkowa, umożliwiająca również synchronizację;</li>
+        <li><a href="https://apps.apple.com/us/app/ankimobile-flashcards/id373493387">AnkiMobile</a> – płatna aplikacja na iOS.</li>
+    </ul>
+</section>
 
-<span class="gp"># </span>Wygeneruj<span class="w"> </span>talię<span class="w"> </span>z<span class="w"> </span>pliku<span class="w"> </span>Excel
-<span class="go">hatch run generate_deck</span>
+<section>
+    <h2>2. Pobierz talię</h2>
+    <p>Talia "PrawoJazdy" jest w pełni darmowa i dostępna na kilka sposobów:</p>
+    <ul>
+        <li>pobierz gotowy plik <code>prawo_jazdy.apkg</code> z <a href="https://github.com/godlark/prawojazdy/releases">repozytorium projektu</a>,</li>
+        <li>lub wygeneruj własną talię przy pomocy naszego narzędzia.</li>
+    </ul>
+</section>
 
-<span class="gp"># </span>Kompletny<span class="w"> </span>proces<span class="w"> </span><span class="o">(</span>pobieranie,<span class="w"> </span>rozpakowywanie,<span class="w"> </span>generowanie<span class="o">)</span>
-<span class="go">hatch run release</span>
-</code></pre></div>
+<section>
+    <h2>3. Użyj talii</h2>
+    <p>Teraz możesz rozpocząć naukę:</p>
+    <ol>
+        <li>Zaimportuj talię w programie Anki.</li>
+        <li>Wbierz talię „Prawo Jazdy – teoria B”.</li>
+        <li>Kliknij „Nauka”, aby rozpocząć.</li>
+        <li>Odpowiadaj na pytania w swoim tempie.</li>
+        <li>Pozwól Anki zaplanować powtórki zgodnie z metodą SRS (Spaced Repetition System).</li>
+    </ol>
+</section>
 
-<h3>Zarządzanie Zasobami</h3>
-<p>Projekt zawiera inteligentne skrypty do zarządzania zasobami:</p>
-<ol>
-<li><code>download_visuals.sh</code>:</li>
-<li>Pobiera zasoby wizualne z oficjalnej strony rządowej</li>
-<li>Sprawdza rozmiar pliku zdalnego, aby uniknąć niepotrzebnych pobrań</li>
-<li>Obsługuje sprawdzanie rozmiaru plików na Linux i macOS</li>
-<li>
-<p>Tworzy plik flagi do śledzenia nowych pobrań</p>
-</li>
-<li>
-<p><code>unpack_visuals.sh</code>:</p>
-</li>
-<li>Automatycznie rozpakowuje pobrane zasoby wizualne</li>
-<li>Świadome systemu operacyjnego rozpakowywanie (używa unar na macOS, unzip na Linux)</li>
-<li>Śledzi status rozpakowywania za pomocą plików flag</li>
-<li>
-<p>Rozpakowuje tylko gdy dostępna jest nowa zawartość</p>
-</li>
-<li>
-<p><code>generate_deck</code>:</p>
-</li>
-<li>Przetwarza plik Excel z pytaniami egzaminacyjnymi</li>
-<li>Integruje pobrane zasoby wizualne</li>
-<li>Tworzy karty do nauki z tekstem i wizualizacjami</li>
-<li>Generuje plik talii kompatybilny z Anki (<code>prawo_jazdy.apkg</code>)</li>
-<li>Źródło: <code>katalog_pytania_egzminacyjne_kandydat__14112024.xlsx</code></li>
-</ol>
-<h3>Generowane Pliki</h3>
-<ul>
-<li><code>prawo_jazdy.apkg</code> - Talia Anki zawierająca pytania i zasoby wizualne</li>
-<li><code>.log</code> - Różne logi operacji (ignorowane przez git)</li>
-<li><code>downloads/</code> - Tymczasowy katalog na pobrane zasoby</li>
-<li><code>media/</code> - Przetworzone pliki multimedialne z prefiksami</li>
-<li><code>visuals/</code> - Rozpakowane zasoby wizualne</li>
-</ul>
-<h2>Struktura Projektu</h2>
-<div class="highlight"><pre><span></span><code><span class="o">.</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">src</span><span class="o">/</span><span class="n">prawojazdy</span><span class="o">/</span><span class="w">           </span><span class="c1"># Główny pakiet Python</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">__about__</span><span class="o">.</span><span class="n">py</span><span class="w">        </span><span class="c1"># Informacje o wersji</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">conversion</span><span class="o">.</span><span class="n">py</span><span class="w">       </span><span class="c1"># Narzędzia konwersji mediów (wrapper ffmpeg)</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">decks</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Generowanie talii Anki</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">main</span><span class="o">.</span><span class="n">py</span><span class="w">            </span><span class="c1"># Główna logika generowania talii</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">media</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Wykrywanie i obsługa typów mediów</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">notes</span><span class="o">.</span><span class="n">py</span><span class="w">           </span><span class="c1"># Tworzenie notatek i przetwarzanie mediów</span>
-<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">templates</span><span class="o">.</span><span class="n">py</span><span class="w">       </span><span class="c1"># Generowanie szablonów kart</span>
-<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">templates</span><span class="o">/</span><span class="w">         </span><span class="c1"># Szablony HTML/JS/CSS kart</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">media</span><span class="o">/</span><span class="w">                  </span><span class="c1"># Zasoby medialne (ignorowane przez git)</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">scripts</span><span class="o">/</span><span class="w">                </span><span class="c1"># Skrypty narzędziowe do zarządzania zasobami</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">tests</span><span class="o">/</span><span class="w">                 </span><span class="c1"># Katalog testów</span>
-<span class="err">├──</span><span class="w"> </span><span class="n">downloads</span><span class="o">/</span><span class="w">              </span><span class="c1"># Pobrane zasoby (ignorowane przez git)</span>
-<span class="err">└──</span><span class="w"> </span><span class="n">visuals</span><span class="o">/</span><span class="w">               </span><span class="c1"># Zasoby wizualne do pytań (ignorowane przez git)</span>
-<span class="w">    </span><span class="err">└──</span><span class="w"> </span><span class="n">wizualizacje</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">pytań_18_01_2024_</span><span class="o">/</span><span class="w">  </span><span class="c1"># Ponad 1500 zasobów wizualnych</span>
-</code></pre></div>
 
-<h2>Główne Komponenty</h2>
-<h3>System Generowania Kart</h3>
-<ul>
-<li>Obsługa dwóch modeli pytań:</li>
-<li>Model 1: Pytania Tak/Nie</li>
-<li>Model 2: Pytania wielokrotnego wyboru (A/B/C)</li>
-<li>Niestandardowe szablony HTML z rozszerzeniami JavaScript</li>
-<li>Responsywny design dla lepszej czytelności</li>
-</ul>
-<h4>Struktura i Zachowanie Kart</h4>
-<ol>
-<li>Komponenty Przedniej Strony:</li>
-<li>Wyświetlanie tekstu pytania</li>
-<li>Dwufazowy system czasowy:<ul>
-<li>Faza 1: Czas na zapoznanie się z pytaniem</li>
-<li>Faza 2: Czas na odpowiedź</li>
-</ul>
-</li>
-<li>Wyświetlanie mediów (jeśli obecne):<ul>
-<li>Obrazy: Wyświetlane natychmiast</li>
-<li>Filmy: Automatyczne odtwarzanie po zakończeniu pierwszej fazy</li>
-<li>Audio: Standardowy tag Anki [sound:]</li>
-</ul>
-</li>
-<li>Wprowadzanie odpowiedzi:<ul>
-<li>Model 1: Przyciski radio "Tak"/"Nie"</li>
-<li>Model 2: Przyciski radio A/B/C z tekstem odpowiedzi</li>
-</ul>
-</li>
-<li>
-<p>Warstwa kompatybilności Desktop i AnkiDroid</p>
-</li>
-<li>
-<p>Komponenty Tylnej Strony:</p>
-</li>
-<li>Tekst pytania</li>
-<li>Wyświetlanie poprawnej odpowiedzi</li>
-<li>Wyświetlanie mediów z kontrolkami:<ul>
-<li>Filmy: Pokazuje ostatnią klatkę z kontrolkami odtwarzania</li>
-<li>Obrazy: Pełne wyświetlanie obrazu</li>
-<li>Audio: Kontrolki odtwarzania</li>
-</ul>
-</li>
-<li>
-<p>Specyficzne dla Modelu 2: Wszystkie opcje odpowiedzi (A/B/C)</p>
-</li>
-<li>
-<p>Funkcje Interaktywne:</p>
-</li>
-<li>Automatyczne odtwarzanie wideo po czasie na przeczytanie</li>
-<li>Animacje timerów dla faz czytania i odpowiadania</li>
-<li>Walidacja wprowadzanych odpowiedzi</li>
-<li>Kontrolki wideo na stronie odpowiedzi</li>
-<li>
-<p>Obsługa różnych platform</p>
-</li>
-<li>
-<p>Obsługa Mediów:</p>
-</li>
-<li>Strona przednia:<ul>
-<li>Filmy: Automatyczne odtwarzanie bez kontrolek</li>
-<li>Obrazy: Bezpośrednie wyświetlanie</li>
-<li>Audio: Standardowe odtwarzanie Anki</li>
-</ul>
-</li>
-<li>Strona tylna:<ul>
-<li>Filmy: Ostatnia klatka z kontrolkami</li>
-<li>Obrazy: Wyświetlanie referencyjne</li>
-<li>Audio: Standardowe odtwarzanie Anki</li>
-</ul>
-</li>
-</ol>
-<h3>Przetwarzanie Mediów</h3>
-<ul>
-<li>Automatyczne wykrywanie typu mediów (wideo/obraz/audio)</li>
-<li>Konwersja wideo do formatu WebM przy użyciu ffmpeg:</li>
-<li>Kodek wideo VP9 z kodowaniem 2-przejściowym</li>
-<li>Kodek audio Opus (128k)</li>
-<li>Konfigurowalny parametr CRF (domyślnie: 26)</li>
-<li>Inteligentne nazewnictwo plików z prefiksem "prawojazdy_"</li>
-</ul>
-<h3>Przetwarzanie Danych</h3>
-<ul>
-<li>Parsowanie plików Excel przy użyciu pandas</li>
-<li>Strukturalne przetwarzanie pytań i odpowiedzi</li>
-<li>Automatyczny wybór modelu na podstawie typu odpowiedzi</li>
-</ul>
-<h2>Rozwój</h2>
-<p>Ten projekt używa <a href="https://hatch.pypa.io/">Hatch</a> do zarządzania środowiskiem deweloperskim. Główne komendy deweloperskie:</p>
-<div class="highlight"><pre><span></span><code><span class="gp"># </span>Sprawdzanie<span class="w"> </span>typów
-<span class="go">hatch run types:check</span>
 
-<span class="gp"># </span>Pokrycie<span class="w"> </span>testami
-<span class="go">hatch run cov</span>
-</code></pre></div>
+        </div>
+    </section>
+    <section id="3-cards-features" class=" wrapper style2 fade-up">
+        <div class="inner">
+            <h1>Funkcje i możliwości kart PrawoJazdy</h1>
+            
 
-<h3>Źródła Danych</h3>
-<p>Projekt wykorzystuje oficjalne materiały egzaminacyjne z polskiego rządu:
-- Zasoby wizualne: <code>https://www.gov.pl/pliki/mi/wizualizacje_do_pytan_18_01_2024.zip</code>
-- Katalog pytań: <code>katalog_pytania_egzminacyjne_kandydat__14112024.xlsx</code></p>
-<h3>Uwaga dla Deweloperów</h3>
-<p>Główna logika przetwarzania w <code>main.py</code> obecnie przetwarza pierwsze 10 wierszy bazy pytań w celach testowych. Aby przetworzyć cały zestaw danych, zmodyfikuj funkcję <code>take_first_10_rows</code> lub jej użycie w funkcji main.</p>
-<h3>Format Pliku Excel</h3>
-<p>Oczekiwany format pliku Excel powinien zawierać następujące kolumny:
-- "Numer pytania" - ID pytania
-- "Pytanie" - Tekst pytania
-- "Poprawna odp" - Poprawna odpowiedź ("Tak"/"Nie" lub "A"/"B"/"C")
-- "Media" - Ścieżka do pliku multimedialnego (opcjonalne)
-- "Odpowiedź A" - Opcja A (dla pytań wielokrotnego wyboru)
-- "Odpowiedź B" - Opcja B (dla pytań wielokrotnego wyboru)
-- "Odpowiedź C" - Opcja C (dla pytań wielokrotnego wyboru)</p>
-<h2>Licencja</h2>
-<p>Ten projekt używa modelu podwójnej licencji:</p>
-<ul>
-<li><strong>Kod</strong>: Licencjonowany na <a href="LICENSE_CODE.txt">LGPL-3.0-or-later</a></li>
-<li><strong>Wygenerowana zawartość (talie, materiały do nauki)</strong>: Licencjonowane na <a href="LICENSE_CONTENT.txt">CC-BY-NC-SA-4.0</a></li>
-</ul>
-<p>Oznacza to:
-- Jeśli modyfikujesz i rozpowszechniasz kod, musisz również udostępnić swoje modyfikacje na licencji LGPL.
-- Możesz swobodnie używać i udostępniać wygenerowane talie kart do celów osobistych i edukacyjnych, ale <strong>użycie komercyjne jest zabronione</strong>. Wszelkie prace pochodne muszą być również udostępniane na tej samej licencji.</p>
-<h2>Autor</h2>
-<p>Sławomir Domagała (slawomir.karol.domagala@gmail.com)</p>
-<h2>Linki</h2>
-<ul>
-<li><a href="https://github.com/godlark/prawojazdy#readme">Dokumentacja</a></li>
-<li><a href="https://github.com/godlark/prawojazdy/issues">Zgłoszenia</a></li>
-<li><a href="https://github.com/godlark/prawojazdy">Kod źródłowy</a></li>
-</ul>
-                </div>
-            </div>
-        </section>
+<section>
+    <h2>Dokładna symulacja egzaminu</h2>
+    <p>Karty PrawoJazdy zostały zaprojektowane tak, aby jak najdokładniej odwzorowywać warunki rzeczywistego egzaminu.</p>
+
+    <h3>Treść</h3>
+    <ul>
+        <li>pytania Tak/Nie, pytania A/B/C — dokładnie jak na egzaminie</li>
+        <li>oficjalne materiały multimedialne w oryginalnej jakości</li>
+        <li>identyczne pytania i odpowiedzi</li>
+    </ul>
+
+    <h3>Interfejs</h3>
+    <ul>
+        <li>odliczanie czasu na zapoznanie się z pytaniem</li>
+        <li>automatyczne odtwarzanie filmów po czasie na przeczytanie</li>
+        <li>odliczanie czasu na odpowiedź</li>
+        <li>blokada odpowiedzi po upływie czasu</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Różnice w stosunku do egzaminu państwowego</h2>
+    <p>Warto wiedzieć, w czym karty różnią się od egzaminu.</p>
+
+    <h3>Dodatkowe możliwości</h3>
+    <ul>
+        <li>natychmiastowa informacja o poprawności odpowiedzi</li>
+        <li>możliwość przewijania filmów na tylnej stronie karty</li>
+        <li>wsparcie dla trybu ciemnego i wysokiego kontrastu (wykorzystanie systemowych kolorów)</li>
+        <li>automatyczne skalowanie wideo i obrazów, aby wypełnić ekran przy zachowaniu proporcji</li>
+    </ul>
+
+    <h3>Interfejs</h3>
+    <ul>
+        <li>responsywny układ dostosowujący się do telefonu i tabletu — położenie elementów zmienia się w zależności od urządzenia</li>
+        <li>inne rozmieszczenie przycisków odpowiedzi</li>
+        <li>dodatkowe elementy interfejsu Anki, w tym skróty klawiszowe</li>
+    </ul>
+</section>
+
+
+        </div>
+    </section>
+    <section id="4-problems-with-commercial-sites" class=" wrapper style3 fade-up">
+        <div class="inner">
+            <h1>Problemy z komercyjnymi serwisami do nauki</h1>
+            
+
+<section>
+    <p>Wszystkie popularne strony i aplikacje z testami na prawo jazdy mają jeden lub kilka z poniższych problemów:</p>
+    <ul>
+        <li>Koszt dostępu – od stosunkowo niskiego (ok. 12 zł/miesiąc za same testy na jednej platformie) po wygórowany
+            (70 zł za 3 tygodnie za pakiet obejmujący testy, archiwum wykładów i zajęcia online). Cena nie jest
+            adekwatna do faktycznej wartości dodanej.
+        </li>
+        <li>Niejasne uzasadnienia odpowiedzi – objaśnienia często są skrótowe i niewystarczające.</li>
+        <li>Brak synchronizacji – aplikacje mobilne i desktopowe nie dzielą postępów ze sobą, co utrudnia naukę w
+            różnych warunkach.
+        </li>
+        <li>Brak trybu offline – niemożność nauki bez dostępu do internetu.</li>
+        <li>Słaby support – brak reakcji na zgłaszane błędy (np. niepoprawne wyjaśnienia do pytań).</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Wspólne problemy komercyjnych rozwiązań</h2>
+    <p>Oprócz powyższych, wszystkie komercyjne serwisy i aplikacje cierpią na te same fundamentalne braki:</p>
+
+    <ol>
+        <li>
+            <strong>Płatny dostęp do darmowych treści</strong>
+            <p>Firmy pobierają opłaty, sprzedając dostęp do materiałów stworzonych na bazie darmowych, oficjalnych
+                materiałów rządowych, nie informując o ich pochodzeniu i nie podając linków do źródeł. Tworzy to
+                złudzenie sztucznej „ekskluzywności”.</p>
+        </li>
+
+        <li>
+            <strong>Toporny mechanizm powtarzania trudnych pytań</strong>
+            <p>Aplikacja sama oznacza najtrudniejsze pytania na podstawie liczby błędnych odpowiedzi.
+                Praktycznie zawsze nie ma możliwości ręcznego usunięcia pytania z tej listy.
+                Skutkiem jest to, że nawet po opanowaniu pytania, nadal pozostaje ono na liście „najtrudniejszych” aż do
+                końca nauki.</p>
+        </li>
+
+        <li>
+            <strong>Brak mechanizmu wychwytywania łatwych pytań</strong>
+            <p>Baza obejmuje ponad 3000 pytań, każde powinno zostać powtórzone 2–3 razy.
+                Zatem systemu rozpoznawania „łatwych” pytań powoduje, że uczeń traci czas na powtarzanie oczywistości
+                zamiast skupić się na trudniejszych zagadnieniach.</p>
+        </li>
+
+        <li>
+            <strong>Brak powtórek „dawno niewidzianych” pytań</strong>
+            <p>Nie istnieje mechanizm inteligentnego przypominania pytań, do których nie zaglądano od dłuższego
+                czasu.</p>
+        </li>
+
+        <li>
+            <strong>Ograniczenia w pracy z multimediami</strong>
+            <p>Brak możliwości przewijania filmów wideo – trzeba oglądać je od początku do końca.</p>
+        </li>
+
+        <li>
+            <strong>Sztywna metodologia nauki</strong>
+            <ul>
+                <li>jeden szablon nauki dla wszystkich użytkowników</li>
+                <li>brak adaptacji do indywidualnych postępów lub trudności kart</li>
+                <li>ograniczone opcje powtórek</li>
+            </ul>
+        </li>
+
+        <li>
+            <strong>Uboga analiza postępów</strong>
+            <ul>
+                <li>Statystyki są bardzo podstawowe, np. liczba pytań uznanych za „opanowane”,
+            przy czym za opanowane uznaje się pytania, na które ostatnia odpowiedź była poprawna.</li>
+                <li>Brakuje szczegółowych raportów takich jak:
+                    <ul>
+                        <li>liczba pytań poprawnie rozwiązanych 2, 3 razy z rzędu,</li>
+                        <li>liczba pytań niepoprawnie rozwiązanych 2, 3 razy z rzędu,</li>
+                        <li>pytania, które zajmują najwięcej lub najmniej czasu.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ol>
+</section>
+
+
+        </div>
+    </section>
+    <section id="5-why-anki" class=" wrapper style1 fade-up">
+        <div class="inner">
+            <h1>Dlaczego Anki?</h1>
+            
+
+<section>
+    <h2>Czym jest Anki</h2>
+    <p>Anki to otwartoźródłowy program do nauki oparty na metodzie regularnych powtórzeń (Spaced Repetition System,
+        SRS).
+        Nie jest to aplikacja stworzona wyłącznie z myślą o kursach prawa jazdy – to uniwersalne narzędzie edukacyjne,
+        z którego korzystają studenci, uczniowie i profesjonaliści na całym świecie.
+        Najczęściej jest używany do nauki języków obcych, medycyny (np. zapamiętywanie nazw leków czy anatomii),
+        prawa i egzaminów zawodowych, zapamiętywania faktów, dat, wzorów czy procedur.
+        Jest on uniwersalny Dzięki elastycznemu formatowi kart (które w praktyce są mini-stronami internetowymi)
+        - umożliwia tworzenie zarówno prostych fiszek tekstowych, jak i multimedialnych symulacji egzaminów.</p>
+</section>
+
+<section>
+    <h2>Efektywność nauki</h2>
+    <ul>
+        <li><strong>Spaced repetition system</strong> – system nauki w Anki bazuje na SRS, który daje przewagę nad
+            tradycyjnymi metodami; badania potwierdzają jego skuteczność.
+        </li>
+        <li><strong>Inteligentne powtórki</strong> – algorytm automatycznie dostosowuje harmonogram powtórek do
+            trudności materiału i użytkownika.
+        </li>
+        <li><strong>Długoterminowe zapamiętywanie</strong> – powtórki pojawiają się dokładnie w momencie największego
+            ryzyka zapomnienia.
+        </li>
+        <li><strong>Zaawansowane typy kart</strong> – cloze deletion (ukrywanie fragmentów tekstu), image occlusion
+            (zakrywanie części obrazów), karty audio z automatycznym odtwarzaniem wspierają różne typu uczenia się
+        </li>
+        <li><strong>Szczegółowe statystyki</strong> – analiza postępów, retencji, czasu nauki i trudności kart.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Elastyczność</h2>
+    <ul>
+        <li><strong>Personalizacja</strong> – szablony kart, podtalie i dodatki pozwalają dopasować naukę do własnych
+            potrzeb.
+        </li>
+        <li><strong>Personalizacja parametrów</strong> – możliwość dostosowania częstości powtórzeń, współczynników łatwości i
+            innych parametrów algorytmu.
+        </li>
+        <li><strong>Karty jako mini-strony internetowe</strong> – pełne wsparcie HTML, CSS i JavaScript umożliwia
+            tworzenie interaktywnych elementów
+        </li>
+        <li><strong>Multimedia</strong> – karty mogą zawierać obrazy, filmy i nagrania audio.</li>
+        <li><strong>Ekosystem dodatków</strong> – setki rozszerzeń dostępnych na AnkiWeb, od modyfikacji interfejsu po
+            zaawansowane funkcje wspierające naukę.
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Użyteczność</h2>
+    <ul>
+        <li><strong>Pełny tryb offline</strong> – nauka możliwa w dowolnym miejscu bez dostępu do internetu.</li>
+        <li><strong>Międzyplatformowość</strong> – dostępne na Windows, macOS, Linux, Android, iOS i w przeglądarce
+            (AnkiWeb).
+        </li>
+        <li><strong>Synchronizacja</strong> – dane można łatwo synchronizować między urządzeniami dzięki AnkiWeb,
+            zachowując postępy z każdego urządzenia.
+        </li>
+        <li><strong>Wsparcie językowe</strong> – interfejs dostępny w 52 językach (desktop) i 25 językach (AnkiMobile),
+            obsługa wszystkich systemów pisma.
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Społeczność i wsparcie</h2>
+    <ul>
+        <li><strong>Pomoc</strong> – aktywne fora AnkiWeb, subreddit r/Anki
+            oraz dokumentacja i poradniki tworzone przez społeczność.
+        </li>
+        <li><strong>Gotowe talie</strong> – AnkiWeb Shared Decks oferuje gotowe zestawy kart
+            z różnych dziedzin wiedzy tworzone przez społeczność.
+        </li>
+        <li><strong>Import i eksport</strong> – obsługa formatów CSV, integracja z Quizlet, eksport/import do/z różnych
+            platform edukacyjnych
+        </li>
+        <li><strong>Symulacja egzaminu</strong> – dzięki elastycznym opcjom możliwe będzie w przyszłości stworzenie
+            trybu egzaminacyjnego za pomocą rozszerzenia do Anki
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Bezpieczeństwo i otwartość</h2>
+    <ul>
+        <li><strong>Prywatność i kontrola danych</strong> – dane przechowywane lokalnie w formacie SQLite,
+            przechowywanie danych w AnkiWeb jest opcją,
+            a nie wymaganiem
+        </li>
+        <li><strong>Bezpieczeństwo</strong> – automatyczne kopie zapasowe i brak zależności od jednej firmy.</li>
+        <li><strong>Open source</strong> – publiczny kod źródłowy na licencji GNU GPL v3,
+            co oznacza, że każdy może go modyfikować i tworzyć własne wersje aplikacji.
+        </li>
+        <li><strong>Bezpłatność</strong> – darmowe wersje desktopowe i AnkiDroid, płatna aplikacja iOS wspiera rozwój.
+        </li>
+    </ul>
+</section>
+
+
+        </div>
+    </section>
+    <section id="6-why-education-should-be-free" class=" wrapper style2 fade-up">
+        <div class="inner">
+            <h1>Dlaczego edukacja powinna być darmowa?</h1>
+            
+
+<section>
+    <h2>Równość szans</h2>
+    <p>Dostęp do materiałów edukacyjnych jest kluczowy, aby państwowe egzaminy były równe dla wszystkich.
+    Przygotowanie do egzaminu nie powinno stanowić bariery finansowej, a prawo do nauki i zdobywania uprawnień
+    powinno być jednakowo dostępne dla każdego obywatela, niezależnie od sytuacji materialnej.
+    Państwo ustanawiając egzaminy powinno być również odpowiedzialne za tworzenie narzędzi i materiałów, które
+    są niezbędne w procesie przygotowania się do tych egzaminów i udostępnienie ich bezmarżowo.
+    Zwłaszcza jeżeli jest głównie jednorazowy koszt, np. przygotowanie podręczników, przygotowanie platformy do nauki.
+    Tanie i otwarte materiały edukacyjne to realny sposób na wyrównywanie szans i zmniejszanie nierówności społecznych.</p>
+</section>
+
+<section>
+    <h2>Prywatyzacja zysków, uspołecznienie kosztów</h2>
+    <p>W przypadku wielu państwowych egzaminów można zaobserwować zjawisko prywatyzacji zysków przy jednoczesnym
+    uspołecznieniu kosztów. Koszt samego podejścia do egzaminu jest stosunkowo niski, często niższy niż koszt
+    przygotowania się do niego. Prawdziwe wydatki ponoszą osoby uczące się, które muszą korzystać z płatnych,
+    komercyjnych platform edukacyjnych. Platformy te osiągają wysokie marże, mimo że ich treści opierają się
+    na publicznie dostępnych materiałach przygotowanych przez instytucje państwowe. Jednocześnie to państwo
+    finansuje proces tworzenia i aktualizacji pytań egzaminacyjnych oraz organizację samych egzaminów,
+    podczas gdy prywatne firmy ponoszą jedynie jednorazowy koszt stworzenia platformy i minimalne koszty jej utrzymania.
+    Taki system sprawia, że społeczeństwo finansuje infrastrukturę i wiedzę, z której zyski czerpią nieliczni.</p>
+</section>
+
+<section>
+    <h2>PrawoJazdy jako przykład</h2>
+    <p>PrawoJazdy jest projektem otwartoźródłowym, który może być używane w otwartoźrodłowym i darmowym programie Anki</p>
+    <ul>
+        <li>Każdy może zgłaszać błędy lub poprawiać istniejące materiały.</li>
+        <li>Użytkownicy mogą tworzyć ulepszenia i dodatki, które służą dobru ogółu.</li>
+        <li>Zmiany i ich historia są dostępne dla wszystkich</li>
+        <li>Feedback nie służy wyłącznie właścicielowi platformy – wszyscy użytkownicy korzystają z ulepszeń.</li>
+        <li>Darmowy dostęp do oficjalnych materiałów egzaminacyjnych.</li>
+        <li>Darmowy dostęp do platformy służącej do nauki do egzaminu.</li>
+        <li>Nowoczesne metody nauki oparte na wiedzy naukowej.</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Podsumowanie</h2>
+    <p>Edukacja i materiały edukacyjne do egzaminów państwowych nie powinny być źródłem dodatkowego zysku prywatnych firm.
+    PrawoJazdy pokazuje, że możliwe jest stworzenie darmowego, rzetelnego, społecznie rozwijanego narzędzia edukacyjnego, które daje wszystkim równy start i realnie przygotowuje do egzaminu.</p>
+    <p>Darmowa i otwarta edukacja to inwestycja w długofalowy rozwój kraju, oparty na wiedzy, innowacyjności i świadomych obywatelach.</p>
+</section>
+
+
+        </div>
     </section>
 
 </div>
@@ -301,13 +438,13 @@
 			</footer>
 
 		<!-- Scripts -->
-			<script src="theme/js/jquery.min.js"></script>
-			<script src="theme/js/jquery.scrollex.min.js"></script>
-			<script src="theme/js/jquery.scrolly.min.js"></script>
-			<script src="theme/js/browser.min.js"></script>
-			<script src="theme/js/breakpoints.min.js"></script>
-			<script src="theme/js/util.js"></script>
-			<script src="theme/js/main.js"></script>
+			<script src="/theme/js/jquery.min.js"></script>
+			<script src="/theme/js/jquery.scrollex.min.js"></script>
+			<script src="/theme/js/jquery.scrolly.min.js"></script>
+			<script src="/theme/js/browser.min.js"></script>
+			<script src="/theme/js/breakpoints.min.js"></script>
+			<script src="/theme/js/util.js"></script>
+			<script src="/theme/js/main.js"></script>
 
 	</body>
 </html>

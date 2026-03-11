@@ -2,15 +2,23 @@
 {% block title %}{{ SITENAME }}{% endblock %}
 {% block content %}
 
+{% set filtered_articles = articles
+| selectattr('category', 'equalto', 'using-and-why')
+| sort(attribute='slug')
+| list
+%}
+
 <!-- Sidebar -->
 <section id="sidebar">
     <div class="inner">
         <nav>
             <ul>
-                <li><a href="#intro">Welcome</a></li>
-                {% for article in articles %}
+                {% if filtered_articles %}
+                <li><a href="#intro">{{ filtered_articles[0].title }}</a></li>
+                {% for article in filtered_articles[1:] %}
                 <li><a href="#{{ article.slug }}">{{ article.title }}</a></li>
                 {% endfor %}
+                {% endif %}
             </ul>
         </nav>
     </div>
@@ -20,29 +28,21 @@
 <div id="wrapper">
 
     <!-- Intro -->
-    <section id="intro" class="wrapper style1 fullscreen fade-up">
+    {% if filtered_articles %}
+    <section id="intro" class="{{ filtered_articles[0].class }} wrapper style3 fullscreen fade-up">
         <div class="inner">
-            <h1>{{ SITENAME }}</h1>
-            <p>Just another fine responsive site template designed by <a href="http://html5up.net">HTML5 UP</a><br/>
-                and released for free under the <a href="http://html5up.net/license">Creative Commons</a>.</p>
-            <ul class="actions">
-                <li><a href="#one" class="button scrolly">Learn more</a></li>
-            </ul>
+            <h1>{{ filtered_articles[0].title }}</h1>
+            {{ filtered_articles[0].content }}
         </div>
     </section>
+    {% endif %}
 
-    {% for article in articles %}
-    <section id="{{ article.slug}}" class="wrapper style2 fade-up">
-        <section>
-            <a href="#" class="image"><img src="theme/images/pic01.jpg" alt=""
-                                           data-position="center center"/></a>
-            <div class="content">
-                <div class="inner">
-                    <h2>{{ article.title }}</h2>
-                    {{ article.content }}
-                </div>
-            </div>
-        </section>
+    {% for article in filtered_articles[1:] %}
+    <section id="{{ article.slug }}" class="{{ article.class }} wrapper {{ loop.cycle('style1', 'style2', 'style3') }} fade-up">
+        <div class="inner">
+            <h1>{{ article.title }}</h1>
+            {{ article.content }}
+        </div>
     </section>
     {% endfor %}
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -euxo pipefail
 
-URL="https://www.gov.pl/pliki/mi/wizualizacje_do_pytan_18_01_2024.zip"
-FILE="visuals.zip"
+URL="$1"
+FILE="$2"
 OUTPUT_DIR="downloads"
 
-FLAG_FILE="$OUTPUT_DIR/.downloaded_new_file"
+FLAG_FILE="$OUTPUT_DIR/.downloaded_new_file.$FILE"
 FILE_PATH="$OUTPUT_DIR/$FILE"
 
 # Get remote Content-Length
@@ -25,11 +25,11 @@ else
 fi
 
 if [ "$REMOTE_SIZE" != "$LOCAL_SIZE" ]; then
-    echo "⬇️ File size changed. Downloading..."
+    echo "File size changed. Downloading..."
     curl -L -o "$FILE_PATH" "$URL"
     touch "$FLAG_FILE"
 else
-    echo "✅ File is up-to-date. No download needed."
+    echo "File is up-to-date. No download needed."
 fi
 
-echo "✅ Done. File: $FILE_PATH"
+echo "Done. File: $FILE_PATH"

@@ -83,6 +83,37 @@ body {
     min-height: 0;
     aspect-ratio: 16 / 9;
     max-width: 100%;
+    position: relative;
+}
+
+.media-wrapper .control {
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    z-index: 1;
+    opacity: 0.4;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.media-wrapper .control::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-top: 24px solid transparent;
+  border-bottom: 24px solid transparent;
+  border-left: 40px solid white;
+}
+
+.media-wrapper .control.hidden {
+    display: none;
 }
 
 .media-wrapper video, .media-wrapper img {
@@ -115,6 +146,10 @@ body {
 
 .timer1::after {
     --counter: 20;
+}
+
+.timer1:not(.general-timer)::after {
+    content: "0";
 }
 
 .timer2::after {

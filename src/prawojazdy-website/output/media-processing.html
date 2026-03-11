@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Darmowa Nauka Prawo Jazdy - Przetwarzanie mediów w PrawoJazdy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/theme/css/main.css" />
+		<noscript><link rel="stylesheet" href="/theme/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+  <article>
+    <header>
+      <h2>
+        <a href="/media-processing.html" rel="bookmark"
+           title="Permalink to Przetwarzanie mediów w PrawoJazdy">Przetwarzanie mediów w PrawoJazdy</a></h2>
+      
+    </header>
+    <h1>Przetwarzanie mediów w PrawoJazdy</h1>
+<h2>System zarządzania mediami</h2>
+<p>PrawoJazdy zawiera zaawansowany system zarządzania mediami, który obsługuje różne typy plików:</p>
+<ol>
+<li><strong>Wykrywanie typów</strong>
+   ```python
+   class MediaType(Enum):
+       Video = 1
+       Image = 2
+       Audio = 3
+       Unknown = 4</li>
+</ol>
+<p>def get_media_type(path) -&gt; MediaType:
+       mime_type, _ = mimetypes.guess_type(path)
+       if mime_type is None:
+           return MediaType.Unknown
+       elif mime_type.startswith("video"):
+           return MediaType.Video
+       elif mime_type.startswith("image"):
+           return MediaType.Image
+       elif mime_type.startswith("audio"):
+           return MediaType.Audio
+       else:
+           return MediaType.Unknown
+   ```</p>
+<ol>
+<li>
+<p><strong>Konwersja wideo</strong>
+   ```python
+   def convert_to_webm(source_file, dest_path, crf_value):
+       # Pierwszy przebieg
+       subprocess.run([
+           "ffmpeg", "-y",
+           "-i", source_file,
+           "-c:v", "libvpx-vp9",
+           "-b:v", "0",
+           "-crf", crf_value,
+           "-pass", "1",
+           "-an",
+           "-f", "null", "/dev/null"
+       ], check=True)</p>
+<p># Drugi przebieg
+   subprocess.run([
+       "ffmpeg", "-y",
+       "-i", source_file,
+       "-c:v", "libvpx-vp9",
+       "-b:v", "0",
+       "-crf", crf_value,
+       "-pass", "2",
+       "-c:a", "libopus",
+       "-b:a", "128k",
+       dest_path
+   ], check=True)
+   ```</p>
+</li>
+</ol>
+<h2>Optymalizacja mediów</h2>
+<h3>1. Konwersja wideo</h3>
+<p>Używamy zaawansowanej konfiguracji ffmpeg:</p>
+<ol>
+<li><strong>Kodek VP9</strong></li>
+<li>Wysoka kompresja</li>
+<li>Dobra jakość</li>
+<li>Szeroka kompatybilność</li>
+<li>
+<p>Optymalizacja dla sieci</p>
+</li>
+<li>
+<p><strong>Dwuprzebiegowe kodowanie</strong></p>
+</li>
+<li>Pierwszy przebieg: analiza</li>
+<li>Drugi przebieg: optymalizacja</li>
+<li>Lepszy balans jakości</li>
+<li>
+<p>Mniejszy rozmiar pliku</p>
+</li>
+<li>
+<p><strong>Parametry kodowania</strong></p>
+</li>
+<li>CRF: 26 (balans jakość/rozmiar)</li>
+<li>Kodek audio: Opus 128k</li>
+<li>Zmienna przepływność</li>
+<li>Automatyczne skalowanie</li>
+</ol>
+<h3>2. Zarządzanie plikami</h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">handle_media</span><span class="p">(</span><span class="n">note</span><span class="p">:</span> <span class="n">Note</span><span class="p">,</span> <span class="n">media_dir_new</span><span class="p">,</span> <span class="n">skip_existing_media</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Note</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">note</span><span class="o">.</span><span class="n">media</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">note</span>
+
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">media</span><span class="p">)</span>
+    <span class="n">handle</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">note</span><span class="o">.</span><span class="n">media_type</span> <span class="o">==</span> <span class="n">MediaType</span><span class="o">.</span><span class="n">Video</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">note</span><span class="o">.</span><span class="n">media</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.webm&quot;</span><span class="p">):</span>
+            <span class="n">media_new_name</span> <span class="o">=</span> <span class="s2">&quot;prawojazdy_&quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;.webm&quot;</span>
+            <span class="n">dest_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">media_dir_new</span><span class="p">,</span> <span class="n">media_new_name</span><span class="p">)</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">convert_to_webm</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">media</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">,</span> <span class="n">crf_value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">media_new_name</span> <span class="o">=</span> <span class="s2">&quot;prawojazdy_&quot;</span> <span class="o">+</span> <span class="n">filename</span>
+            <span class="n">dest_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">media_dir_new</span><span class="p">,</span> <span class="n">media_new_name</span><span class="p">)</span>
+            <span class="n">handle</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">media</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">media_new_name</span> <span class="o">=</span> <span class="s2">&quot;prawojazdy_&quot;</span> <span class="o">+</span> <span class="n">filename</span>
+        <span class="n">dest_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">media_dir_new</span><span class="p">,</span> <span class="n">media_new_name</span><span class="p">)</span>
+        <span class="n">handle</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">media</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">dest_path</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">skip_existing_media</span><span class="p">:</span>
+        <span class="n">handle</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">Note</span><span class="p">(</span><span class="n">note</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">note</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="n">note</span><span class="o">.</span><span class="n">correct_answer</span><span class="p">,</span> <span class="n">note</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">note</span><span class="o">.</span><span class="n">additional_fields</span><span class="p">,</span> <span class="n">note</span><span class="o">.</span><span class="n">media_type</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Funkcje systemu</h2>
+<h3>1. Pobieranie zasobów</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Sprawdzanie rozmiaru zdalnego</span>
+<span class="nv">REMOTE_SIZE</span><span class="o">=</span><span class="k">$(</span>curl<span class="w"> </span>-sI<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>Content-Length<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+
+<span class="c1"># Porównanie z lokalnym</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$REMOTE_SIZE</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$LOCAL_SIZE</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>curl<span class="w"> </span>-L<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE_PATH</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span>
+<span class="w">    </span>touch<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FLAG_FILE</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+
+<h3>2. Rozpakowywanie</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Obsługa różnych systemów</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OS</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;Darwin&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">    </span>unar<span class="w"> </span>-output-directory<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTPUT_DIR</span><span class="s2">&quot;</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+<span class="w">    </span>unzip<span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$FILE</span><span class="s2">&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUTPUT_DIR</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+</code></pre></div>
+
+<h3>3. Przetwarzanie wsadowe</h3>
+<ul>
+<li>Kolejkowanie konwersji</li>
+<li>Zarządzanie pamięcią</li>
+<li>Obsługa błędów</li>
+<li>Raportowanie postępu</li>
+</ul>
+<h2>Optymalizacje wydajności</h2>
+<ol>
+<li><strong>Buforowanie</strong></li>
+<li>Cache plików tymczasowych</li>
+<li>Unikanie duplikatów</li>
+<li>Inteligentne odświeżanie</li>
+<li>
+<p>Zarządzanie przestrzenią</p>
+</li>
+<li>
+<p><strong>Przetwarzanie równoległe</strong></p>
+</li>
+<li>Konwersja wielu plików</li>
+<li>Wykorzystanie wielu rdzeni</li>
+<li>Zarządzanie obciążeniem</li>
+<li>
+<p>Priorytety zadań</p>
+</li>
+<li>
+<p><strong>Zarządzanie zasobami</strong></p>
+</li>
+<li>Limity pamięci</li>
+<li>Czyszczenie tymczasowych</li>
+<li>Optymalizacja I/O</li>
+<li>Monitoring zasobów</li>
+</ol>
+<h2>Obsługa błędów</h2>
+<div class="highlight"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+    <span class="n">convert_to_webm</span><span class="p">(</span><span class="n">source_file</span><span class="p">,</span> <span class="n">dest_path</span><span class="p">,</span> <span class="n">crf_value</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Błąd konwersji: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Fallback do kopii lub alternatywnego formatu</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Nieoczekiwany błąd: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Obsługa innych błędów</span>
+</code></pre></div>
+
+<h2>Monitorowanie</h2>
+<ol>
+<li><strong>Logi</strong></li>
+<li>Status konwersji</li>
+<li>Błędy i ostrzeżenia</li>
+<li>Statystyki wydajności</li>
+<li>
+<p>Zużycie zasobów</p>
+</li>
+<li>
+<p><strong>Metryki</strong></p>
+</li>
+<li>Czas przetwarzania</li>
+<li>Współczynniki kompresji</li>
+<li>Jakość wyjściowa</li>
+<li>Wykorzystanie CPU/RAM</li>
+</ol>
+<h2>Podsumowanie</h2>
+<p>System przetwarzania mediów w PrawoJazdy:
+- Jest wydajny i niezawodny
+- Zapewnia wysoką jakość
+- Optymalizuje zasoby
+- Obsługuje różne formaty</p>
+<p>Kluczowe cechy:
+- Zaawansowana konwersja wideo
+- Inteligentne zarządzanie plikami
+- Efektywne wykorzystanie zasobów
+- Rozbudowana obsługa błędów</p>
+    <footer>
+      <p>Published: <time datetime="2025-09-15T13:00:00+02:00">
+        Mon 15 September 2025
+      </time></p>
+        <address>
+          By             <a href="/author/slawomir-domagala.html">Sławomir Domagała</a>
+        </address>
+        <p>
+          Category: <a href="/category/development.html">development</a>
+        </p>
+        <p>
+          Tags:
+            <a href="/tag/media.html">media</a>
+            <a href="/tag/ffmpeg.html">ffmpeg</a>
+            <a href="/tag/optimization.html">optimization</a>
+            <a href="/tag/technical.html">technical</a>
+        </p>
+    </footer>
+  </article>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/theme/js/jquery.min.js"></script>
+			<script src="/theme/js/jquery.scrollex.min.js"></script>
+			<script src="/theme/js/jquery.scrolly.min.js"></script>
+			<script src="/theme/js/browser.min.js"></script>
+			<script src="/theme/js/breakpoints.min.js"></script>
+			<script src="/theme/js/util.js"></script>
+			<script src="/theme/js/main.js"></script>
+
+	</body>
+</html>

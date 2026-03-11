@@ -6,6 +6,105 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
+#intro > .inner {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+#intro > .inner > * {
+    flex-grow: 1;
+    flex-shrink 1;
+}
+
+#intro > .inner > section {
+    flex-grow: 1;
+    flex-basis: min-content;
+}
+
+[id="5-why-anki"] {
+    h1, h2, h3, h4, h5 {
+        text-wrap: nowrap;
+    }
+
+    li {
+        min-width: 25ch;
+    }
+}
+
+[id="5-why-anki"] > .inner {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+[id="5-why-anki"] > .inner {
+    > h1, > section:first-of-type {
+        flex-grow: 1;
+        flex-basis: 100%;
+    }
+}
+
+[id="5-why-anki"] > .inner > section {
+    flex-grow: 1;
+    flex-shrink 1;
+    flex-basis: min-content;
+}
+
+[id="2-how-to-start"]  {
+    h1, h2, h3, h4, h5 {
+        text-wrap: nowrap;
+    }
+}
+
+[id="2-how-to-start"] > .inner {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+[id="2-how-to-start"] > .inner > section {
+    flex-grow: 1;
+    flex-shrink 1;
+    flex-basis: min-content;
+}
+
+[id="2-how-to-start"] > .inner {
+    > h1 {
+        flex-grow: 1;
+        flex-basis: 100%;
+    }
+}
+
+[id="3-cards-features"]  {
+    h1, h2, h3, h4, h5 {
+        text-wrap: nowrap;
+    }
+}
+
+[id="3-cards-features"] > .inner {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+[id="3-cards-features"] > .inner > section {
+    flex-grow: 1;
+    flex-shrink 1;
+    flex-basis: min-content;
+}
+
+[id="3-cards-features"] > .inner {
+    > h1 {
+        flex-grow: 1;
+        flex-basis: 100%;
+    }
+}
+
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
 pre, a, abbr, acronym, address, big, cite,
@@ -2629,6 +2728,10 @@ input, select, textarea {
 		list-style: disc;
 		margin: 0 0 2em 0;
 		padding-left: 1em;
+	}
+
+	ul ul {
+	    margin: 0;
 	}
 
 		ul li {

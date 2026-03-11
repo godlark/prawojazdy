@@ -35,3 +35,8 @@ DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
 # RELATIVE_URLS = True
+
+ASCIIDOC_CMD = 'asciidoctor'
+
+PLUGIN_PATHS = ['./pelican-plugins']
+PLUGINS = ['asciidoc_reader']

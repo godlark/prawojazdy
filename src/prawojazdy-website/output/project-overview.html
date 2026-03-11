@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Darmowa Nauka Prawo Jazdy - Przegląd projektu PrawoJazdy</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/theme/css/main.css" />
+		<noscript><link rel="stylesheet" href="/theme/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+  <article>
+    <header>
+      <h2>
+        <a href="/project-overview.html" rel="bookmark"
+           title="Permalink to Przegląd projektu PrawoJazdy">Przegląd projektu PrawoJazdy</a></h2>
+      
+    </header>
+    <h1>Przegląd projektu PrawoJazdy</h1>
+<h2>Architektura systemu</h2>
+<p>PrawoJazdy to kompleksowy system generowania materiałów edukacyjnych, składający się z kilku kluczowych komponentów:</p>
+<ol>
+<li><strong>Rdzeń systemu</strong></li>
+<li>Generator talii Anki</li>
+<li>System zarządzania mediami</li>
+<li>Moduł konwersji formatów</li>
+<li>
+<p>Szablony kart HTML/JS</p>
+</li>
+<li>
+<p><strong>Zarządzanie zasobami</strong></p>
+</li>
+<li>Automatyczne pobieranie materiałów</li>
+<li>Weryfikacja integralności</li>
+<li>Optymalizacja mediów</li>
+<li>
+<p>Zarządzanie pamięcią podręczną</p>
+</li>
+<li>
+<p><strong>Interfejs użytkownika</strong></p>
+</li>
+<li>Interaktywne karty Anki</li>
+<li>Responsywny design</li>
+<li>System timerów</li>
+<li>Obsługa multimediów</li>
+</ol>
+<h2>Technologie</h2>
+<p>Projekt wykorzystuje nowoczesny stos technologiczny:</p>
+<ol>
+<li><strong>Backend</strong></li>
+<li>Python 3.8+</li>
+<li>pandas do przetwarzania danych</li>
+<li>genanki do generowania talii</li>
+<li>
+<p>ffmpeg do konwersji mediów</p>
+</li>
+<li>
+<p><strong>Frontend</strong></p>
+</li>
+<li>HTML5 dla szablonów kart</li>
+<li>JavaScript dla interakcji</li>
+<li>CSS3 dla stylizacji</li>
+<li>
+<p>Wsparcie dla WebM</p>
+</li>
+<li>
+<p><strong>Narzędzia</strong></p>
+</li>
+<li>Hatch do zarządzania projektem</li>
+<li>Git do kontroli wersji</li>
+<li>mypy do typowania statycznego</li>
+<li>pytest do testów</li>
+</ol>
+<h2>Struktura projektu</h2>
+<div class="highlight"><pre><span></span><code>.
+├── src/prawojazdy/           # Główny pakiet Python
+│   ├── __about__.py        # Informacje o wersji
+│   ├── conversion.py       # Konwersja mediów
+│   ├── decks.py           # Generowanie talii
+│   ├── main.py            # Główny moduł
+│   ├── media.py           # Obsługa mediów
+│   ├── notes.py           # Tworzenie notatek
+│   ├── templates.py       # Generowanie szablonów
+│   └── templates/         # Szablony HTML/JS/CSS
+├── media/                  # Zasoby medialne
+├── scripts/                # Skrypty narzędziowe
+├── tests/                 # Testy
+└── visuals/               # Zasoby wizualne
+</code></pre></div>
+
+<h2>Komponenty systemu</h2>
+<h3>1. Generator talii</h3>
+<ul>
+<li>Przetwarzanie plików Excel</li>
+<li>Wykrywanie typów pytań</li>
+<li>Integracja mediów</li>
+<li>Generowanie kart</li>
+</ul>
+<h3>2. System mediów</h3>
+<ul>
+<li>Konwersja wideo do WebM</li>
+<li>Optymalizacja obrazów</li>
+<li>Zarządzanie zasobami</li>
+<li>Buforowanie</li>
+</ul>
+<h3>3. Szablony kart</h3>
+<ul>
+<li>Responsywny HTML</li>
+<li>Interaktywny JavaScript</li>
+<li>Style CSS</li>
+<li>Kompatybilność z Anki</li>
+</ul>
+<h2>Przepływ danych</h2>
+<ol>
+<li>
+<p><strong>Pobieranie zasobów</strong>
+   <code>bash
+   hatch run download_visuals
+   hatch run unpack_visuals</code></p>
+</li>
+<li>
+<p><strong>Przetwarzanie</strong></p>
+</li>
+<li>Odczyt pliku Excel</li>
+<li>Analiza pytań</li>
+<li>Przygotowanie mediów</li>
+<li>
+<p>Generowanie szablonów</p>
+</li>
+<li>
+<p><strong>Generowanie talii</strong></p>
+</li>
+<li>Tworzenie kart</li>
+<li>Integracja mediów</li>
+<li>Pakowanie do .apkg</li>
+<li>Weryfikacja</li>
+</ol>
+<h2>Wymagania systemowe</h2>
+<ol>
+<li><strong>Python</strong></li>
+<li>Python 3.8 lub nowszy</li>
+<li>
+<p>Wymagane pakiety:</p>
+<ul>
+<li>pandas</li>
+<li>genanki</li>
+<li>numpy</li>
+<li>openpyxl</li>
+</ul>
+</li>
+<li>
+<p><strong>System</strong></p>
+</li>
+<li>ffmpeg dla konwersji wideo</li>
+<li>unzip/unar dla rozpakowania</li>
+<li>2GB RAM minimum</li>
+<li>
+<p>5GB przestrzeni dyskowej</p>
+</li>
+<li>
+<p><strong>Opcjonalne</strong></p>
+</li>
+<li>GPU dla szybszej konwersji</li>
+<li>SSD dla lepszej wydajności</li>
+<li>Więcej RAM dla dużych plików</li>
+</ol>
+<h2>Rozwijanie projektu</h2>
+<ol>
+<li><strong>Środowisko</strong>
+   ```bash
+   # Instalacja zależności
+   pip install hatch
+   hatch shell</li>
+</ol>
+<p># Testy
+   hatch run test</p>
+<p># Typowanie
+   hatch run types:check
+   ```</p>
+<ol>
+<li><strong>Konwencje</strong></li>
+<li>Black dla formatowania</li>
+<li>mypy dla typów</li>
+<li>pytest dla testów</li>
+<li>
+<p>Conventional Commits</p>
+</li>
+<li>
+<p><strong>Dokumentacja</strong></p>
+</li>
+<li>Docstrings w kodzie</li>
+<li>README.md</li>
+<li>Komentarze w szablonach</li>
+<li>Przykłady użycia</li>
+</ol>
+<h2>Podsumowanie</h2>
+<p>PrawoJazdy to:
+- Nowoczesny system generowania materiałów
+- Zaawansowane przetwarzanie mediów
+- Przyjazne interfejsy użytkownika
+- Skalowalny i rozszerzalny projekt</p>
+<p>Cechy techniczne:
+- Czysty, typowany kod Python
+- Optymalizacja wydajności
+- Łatwa rozszerzalność
+- Pełne testy</p>
+<p>To solidna podstawa do dalszego rozwoju i adaptacji do innych zastosowań edukacyjnych.</p>
+    <footer>
+      <p>Published: <time datetime="2025-09-15T12:00:00+02:00">
+        Mon 15 September 2025
+      </time></p>
+        <address>
+          By             <a href="/author/slawomir-domagala.html">Sławomir Domagała</a>
+        </address>
+        <p>
+          Category: <a href="/category/development.html">development</a>
+        </p>
+        <p>
+          Tags:
+            <a href="/tag/overview.html">overview</a>
+            <a href="/tag/architecture.html">architecture</a>
+            <a href="/tag/python.html">python</a>
+        </p>
+    </footer>
+  </article>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/theme/js/jquery.min.js"></script>
+			<script src="/theme/js/jquery.scrollex.min.js"></script>
+			<script src="/theme/js/jquery.scrolly.min.js"></script>
+			<script src="/theme/js/browser.min.js"></script>
+			<script src="/theme/js/breakpoints.min.js"></script>
+			<script src="/theme/js/util.js"></script>
+			<script src="/theme/js/main.js"></script>
+
+	</body>
+</html>

@@ -1,6 +1,6 @@
 # PrawoJazdy
 
-🌍 Languages: [English](README.md) | [Polski](README.pl.md)
+Languages: [English](README.md) | [Polski](README.pl.md)
 
 PrawoJazdy (Polish for "Driving License") is a Python-based educational content generation system designed for creating study materials for driving license examination preparation. The project focuses on generating study cards with both textual content and visual assets, outputting an Anki-compatible deck file (`.apkg`).
 
@@ -52,7 +52,7 @@ hatch run unpack_visuals
 hatch run generate_deck
 
 # Complete workflow (download, unpack, generate)
-hatch run release
+hatch run release or hatch run deck.2026_02:release
 ```
 
 ### Asset Management

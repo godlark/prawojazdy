@@ -16,7 +16,7 @@ template_root = Path.joinpath(package_root, "templates")
 
 
 def generate_card_side(model: Model, card_side: CardSide):
-    style_content = open(Path.joinpath(template_root, "model_front_script.js")).read()
+    style_content = open(Path.joinpath(template_root, "model_style.css")).read()
     script_front_content = open(Path.joinpath(template_root, "model_front_script.js")).read()
     script_back_content = open(Path.joinpath(template_root, "model_back_script.js")).read()
 

@@ -7,3 +7,4 @@ __pycache__
 .idea
 *.log
 prawo_jazdy.apkg
+.env_variable

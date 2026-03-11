@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Darmowa Nauka Prawo Jazdy - Jak działa PrawoJazdy?</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/theme/css/main.css" />
+		<noscript><link rel="stylesheet" href="/theme/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+  <article>
+    <header>
+      <h2>
+        <a href="/how-it-works.html" rel="bookmark"
+           title="Permalink to Jak działa PrawoJazdy?">Jak działa PrawoJazdy?</a></h2>
+      
+    </header>
+    <h1>Jak działa PrawoJazdy?</h1>
+<h2>Architektura systemu</h2>
+<p>PrawoJazdy to zaawansowany system generowania materiałów edukacyjnych, składający się z kilku kluczowych komponentów:</p>
+<ol>
+<li><strong>Generator talii Anki</strong></li>
+<li>Przetwarzanie oficjalnych materiałów egzaminacyjnych</li>
+<li>Automatyczne wykrywanie typu pytań (Tak/Nie lub A/B/C)</li>
+<li>Generowanie kart zgodnych ze standardem Anki</li>
+<li>
+<p>Integracja materiałów multimedialnych</p>
+</li>
+<li>
+<p><strong>System zarządzania mediami</strong></p>
+</li>
+<li>Automatyczne pobieranie oficjalnych zasobów</li>
+<li>Konwersja wideo do formatu WebM (VP9)</li>
+<li>Optymalizacja obrazów</li>
+<li>
+<p>Inteligentne zarządzanie pamięcią podręczną</p>
+</li>
+<li>
+<p><strong>Szablony kart</strong></p>
+</li>
+<li>Responsywny design HTML/CSS</li>
+<li>Interaktywne elementy JavaScript</li>
+<li>Wsparcie dla różnych typów mediów</li>
+<li>Kompatybilność z różnymi platformami</li>
+</ol>
+<h2>Proces generowania talii</h2>
+<h3>1. Pobieranie materiałów źródłowych</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Pobranie najnowszych materiałów wizualnych</span>
+hatch<span class="w"> </span>run<span class="w"> </span>download_visuals
+
+<span class="c1"># Rozpakowanie i przygotowanie zasobów</span>
+hatch<span class="w"> </span>run<span class="w"> </span>unpack_visuals
+</code></pre></div>
+
+<p>System automatycznie:
+- Sprawdza dostępność nowych materiałów
+- Pobiera tylko zmienione pliki
+- Weryfikuje integralność pobranych danych
+- Przygotowuje strukturę katalogów</p>
+<h3>2. Przetwarzanie danych</h3>
+<p>Proces przetwarzania obejmuje:</p>
+<ol>
+<li><strong>Analiza pliku Excel</strong></li>
+<li>Odczyt pytań i odpowiedzi</li>
+<li>Identyfikacja powiązanych mediów</li>
+<li>
+<p>Kategoryzacja pytań</p>
+</li>
+<li>
+<p><strong>Przygotowanie mediów</strong></p>
+</li>
+<li>Konwersja filmów do WebM</li>
+<li>Optymalizacja jakości</li>
+<li>Generowanie miniatur</li>
+<li>
+<p>Przygotowanie ścieżek audio</p>
+</li>
+<li>
+<p><strong>Generowanie kart</strong></p>
+</li>
+<li>Tworzenie szablonów HTML</li>
+<li>Integracja JavaScript</li>
+<li>Dodawanie mediów</li>
+<li>Konfiguracja stylów CSS</li>
+</ol>
+<h3>3. Struktura karty</h3>
+<p>Każda karta w talii zawiera:</p>
+<ol>
+<li><strong>Strona przednia</strong>
+   ```html
+ <br>
+<div class="card-container">
+     <!-- Pytanie i multimedia -->
+     <div class="question">...</div>
+     <div class="media-wrapper">...</div>
+     <!-- System timerów -->
+     <div class="timer1">...</div>
+     <div class="timer2">...</div>
+     <!-- Opcje odpowiedzi -->
+     <div class="answer-input">...</div>
+   </div></li>
+</ol>
+<p>```</p>
+<ol>
+<li><strong>Strona tylna</strong>
+   ```html
+ <br>
+<div class="card-container">
+     <!-- Pytanie i odpowiedź -->
+     <div class="question">...</div>
+     <div class="answer">...</div>
+     <!-- Multimedia z kontrolkami -->
+     <div class="media-wrapper controls">...</div>
+   </div></li>
+</ol>
+<p>```</p>
+<h2>Funkcje interaktywne</h2>
+<h3>1. System timerów</h3>
+<p>Karty zawierają dwufazowy system timerów:
+- Faza 1: Czas na zapoznanie się z pytaniem
+- Faza 2: Czas na udzielenie odpowiedzi</p>
+<div class="highlight"><pre><span></span><code><span class="nx">timer1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;animationend&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">video</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">video</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">timer2</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;animate&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3>2. Obsługa mediów</h3>
+<p>Różne zachowanie mediów na przedniej i tylnej stronie:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Strona przednia - automatyczne odtwarzanie</span>
+<span class="nx">video</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;ended&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">timer2</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;animate&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="c1">// Strona tylna - ostatnia klatka</span>
+<span class="nx">video</span><span class="p">.</span><span class="nx">onloadedmetadata</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">video</span><span class="p">.</span><span class="nx">currentTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">video</span><span class="p">.</span><span class="nx">duration</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.01</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div>
+
+<h3>3. Kompatybilność</h3>
+<p>System zapewnia kompatybilność z:
+- Anki Desktop
+- AnkiDroid
+- AnkiWeb
+- AnkiMobile</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Warstwa kompatybilności</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">updateInput</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">typeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;typeans&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">typeans</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// AnkiDroid</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">taChange</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;function&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">taChange</span><span class="p">(</span><span class="nx">typeans</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Optymalizacja mediów</h2>
+<h3>1. Konwersja wideo</h3>
+<p>Wykorzystanie ffmpeg z dwuprzebiegowym kodowaniem:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Pierwszy przebieg</span>
+ffmpeg<span class="w"> </span>-i<span class="w"> </span>source.mp4<span class="w"> </span>-c:v<span class="w"> </span>libvpx-vp9<span class="w"> </span>-b:v<span class="w"> </span><span class="m">0</span><span class="w"> </span>-crf<span class="w"> </span><span class="m">26</span><span class="w"> </span>-pass<span class="w"> </span><span class="m">1</span><span class="w"> </span>-an<span class="w"> </span>-f<span class="w"> </span>null<span class="w"> </span>/dev/null
+
+<span class="c1"># Drugi przebieg</span>
+ffmpeg<span class="w"> </span>-i<span class="w"> </span>source.mp4<span class="w"> </span>-c:v<span class="w"> </span>libvpx-vp9<span class="w"> </span>-b:v<span class="w"> </span><span class="m">0</span><span class="w"> </span>-crf<span class="w"> </span><span class="m">26</span><span class="w"> </span>-pass<span class="w"> </span><span class="m">2</span><span class="w"> </span>-c:a<span class="w"> </span>libopus<span class="w"> </span>-b:a<span class="w"> </span>128k<span class="w"> </span>output.webm
+</code></pre></div>
+
+<h3>2. Zarządzanie zasobami</h3>
+<ul>
+<li>Prefiks "prawojazdy_" dla wszystkich plików</li>
+<li>Automatyczne wykrywanie typów MIME</li>
+<li>Inteligentne buforowanie</li>
+<li>Optymalizacja rozmiaru plików</li>
+</ul>
+<h2>Podsumowanie</h2>
+<p>PrawoJazdy to kompleksowe rozwiązanie łączące:
+- Automatyzację procesów
+- Optymalizację mediów
+- Interaktywne karty do nauki
+- Kompatybilność międzyplatformową</p>
+<p>Dzięki wykorzystaniu nowoczesnych technologii i standardów, system zapewnia wysoką jakość materiałów edukacyjnych przy zachowaniu wydajności i kompatybilności z ekosystemem Anki.</p>
+    <footer>
+      <p>Published: <time datetime="2025-09-15T00:00:00+02:00">
+        Mon 15 September 2025
+      </time></p>
+        <address>
+          By             <a href="/author/slawomir-domagala.html">Sławomir Domagała</a>
+        </address>
+        <p>
+          Category: <a href="/category/technical.html">Technical</a>
+        </p>
+        <p>
+          Tags:
+            <a href="/tag/technical.html">technical</a>
+            <a href="/tag/implementation.html">implementation</a>
+            <a href="/tag/anki.html">anki</a>
+            <a href="/tag/python.html">python</a>
+        </p>
+    </footer>
+  </article>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/theme/js/jquery.min.js"></script>
+			<script src="/theme/js/jquery.scrollex.min.js"></script>
+			<script src="/theme/js/jquery.scrolly.min.js"></script>
+			<script src="/theme/js/browser.min.js"></script>
+			<script src="/theme/js/breakpoints.min.js"></script>
+			<script src="/theme/js/util.js"></script>
+			<script src="/theme/js/main.js"></script>
+
+	</body>
+</html>

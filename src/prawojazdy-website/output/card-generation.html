@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Darmowa Nauka Prawo Jazdy - Jak generowane są karty Anki?</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="/theme/css/main.css" />
+		<noscript><link rel="stylesheet" href="/theme/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+  <article>
+    <header>
+      <h2>
+        <a href="/card-generation.html" rel="bookmark"
+           title="Permalink to Jak generowane są karty Anki?">Jak generowane są karty Anki?</a></h2>
+      
+    </header>
+    <h1>Jak generowane są karty Anki?</h1>
+<h2>Proces generowania</h2>
+<p>Generowanie kart to złożony proces składający się z kilku etapów:</p>
+<ol>
+<li><strong>Wczytywanie danych</strong>
+   <code>python
+   df = pd.read_excel(exam_questions_xlsx)</code></li>
+<li>Odczyt pliku Excel z pytaniami</li>
+<li>Walidacja struktury danych</li>
+<li>Przygotowanie DataFrame</li>
+<li>
+<p>Weryfikacja wymaganych kolumn</p>
+</li>
+<li>
+<p><strong>Analiza pytań</strong>
+   <code>python
+   if "Tak" in correct_answer or "Nie" in correct_answer:
+       model = Model.MODEL_1
+   else:
+       model = Model.MODEL_2</code></p>
+</li>
+<li>Automatyczne wykrywanie typu pytania</li>
+<li>Przypisanie odpowiedniego modelu</li>
+<li>Walidacja odpowiedzi</li>
+<li>
+<p>Przygotowanie dodatkowych pól</p>
+</li>
+<li>
+<p><strong>Przetwarzanie mediów</strong>
+   <code>python
+   media_type = get_media_type(media_path)
+   if media_type == MediaType.Video:
+       convert_to_webm(source_file, dest_path, crf_value)</code></p>
+</li>
+<li>Wykrywanie typu mediów</li>
+<li>Konwersja do odpowiednich formatów</li>
+<li>Optymalizacja rozmiaru</li>
+<li>Prefixowanie nazw plików</li>
+</ol>
+<h2>Struktura kart</h2>
+<h3>1. Model karty Tak/Nie</h3>
+<div class="highlight"><pre><span></span><code><span class="n">model1</span> <span class="o">=</span> <span class="n">genanki</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">),</span>
+    <span class="s2">&quot;Prawo Jazdy - Tak/Nie&quot;</span><span class="p">,</span>
+    <span class="n">fields</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Question ID&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Question&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Answer&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Video&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Image&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Audio&quot;</span><span class="p">}</span>
+    <span class="p">],</span>
+    <span class="n">templates</span><span class="o">=</span><span class="p">[{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Card 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;qfmt&quot;</span><span class="p">:</span> <span class="n">generate_card_side</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">MODEL_1</span><span class="p">,</span> <span class="n">CardSide</span><span class="o">.</span><span class="n">FRONT</span><span class="p">),</span>
+        <span class="s2">&quot;afmt&quot;</span><span class="p">:</span> <span class="n">generate_card_side</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">MODEL_1</span><span class="p">,</span> <span class="n">CardSide</span><span class="o">.</span><span class="n">BACK</span><span class="p">),</span>
+    <span class="p">}],</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h3>2. Model karty ABC</h3>
+<div class="highlight"><pre><span></span><code><span class="n">model2</span> <span class="o">=</span> <span class="n">genanki</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">),</span>
+    <span class="s2">&quot;Prawo Jazdy - A/B/C&quot;</span><span class="p">,</span>
+    <span class="n">fields</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Question ID&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Question&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Answer&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Video&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Image&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Audio&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;AnswerA&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;AnswerB&quot;</span><span class="p">},</span>
+        <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;AnswerC&quot;</span><span class="p">},</span>
+    <span class="p">],</span>
+    <span class="n">templates</span><span class="o">=</span><span class="p">[{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Card 1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;qfmt&quot;</span><span class="p">:</span> <span class="n">generate_card_side</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">MODEL_2</span><span class="p">,</span> <span class="n">CardSide</span><span class="o">.</span><span class="n">FRONT</span><span class="p">),</span>
+        <span class="s2">&quot;afmt&quot;</span><span class="p">:</span> <span class="n">generate_card_side</span><span class="p">(</span><span class="n">Model</span><span class="o">.</span><span class="n">MODEL_2</span><span class="p">,</span> <span class="n">CardSide</span><span class="o">.</span><span class="n">BACK</span><span class="p">),</span>
+    <span class="p">}],</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<h2>Szablony HTML</h2>
+<h3>1. Strona przednia</h3>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-container&quot;</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- Pytanie i multimedia --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;question&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;media-wrapper&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- System timerów --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;timer1&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;timer2&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- Opcje odpowiedzi --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;answer-input&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h3>2. Strona tylna</h3>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card-container&quot;</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- Pytanie i odpowiedź --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;question&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;answer&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="cm">&lt;!-- Multimedia z kontrolkami --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;media-wrapper controls&quot;</span><span class="p">&gt;</span>...<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h2>Obsługa JavaScript</h2>
+<h3>1. System timerów</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Obsługa faz czasowych</span>
+<span class="nx">timer1</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;animationend&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">video</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">video</span><span class="p">.</span><span class="nx">play</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">timer2</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;animate&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+
+<span class="c1">// Obsługa wideo</span>
+<span class="nx">video</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;ended&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">timer2</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;animate&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h3>2. Kompatybilność</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">// Warstwa kompatybilności z różnymi wersjami Anki</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">updateInput</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">typeans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;typeans&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">typeans</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">value</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// AnkiDroid</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">taChange</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;function&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">taChange</span><span class="p">(</span><span class="nx">typeans</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2>Generowanie pakietu</h2>
+<ol>
+<li>
+<p><strong>Tworzenie notatek</strong>
+   <code>python
+   note = genanki.Note(
+       model=model,
+       fields=[
+           note_data.id,
+           note_data.question,
+           note_data.correct_answer,
+           os.path.basename(note_data.media),
+           *note_data.additional_fields
+       ]
+   )</code></p>
+</li>
+<li>
+<p><strong>Dodawanie do talii</strong>
+   <code>python
+   deck = genanki.Deck(
+       random.randrange(1 &lt;&lt; 30, 1 &lt;&lt; 31),
+       "Prawo Jazdy - teoria B"
+   )
+   deck.add_note(note)</code></p>
+</li>
+<li>
+<p><strong>Pakowanie</strong>
+   <code>python
+   package = genanki.Package(deck, media_files=media_files)
+   package.write_to_file("prawo_jazdy.apkg")</code></p>
+</li>
+</ol>
+<h2>Optymalizacje</h2>
+<ol>
+<li><strong>Media</strong></li>
+<li>Dwuprzebiegowe kodowanie VP9</li>
+<li>Optymalizacja CRF</li>
+<li>Inteligentne buforowanie</li>
+<li>
+<p>Prefixowanie nazw</p>
+</li>
+<li>
+<p><strong>Pamięć</strong></p>
+</li>
+<li>Przetwarzanie strumieniowe</li>
+<li>Zarządzanie zasobami</li>
+<li>Czyszczenie tymczasowych plików</li>
+<li>
+<p>Optymalizacja importów</p>
+</li>
+<li>
+<p><strong>Wydajność</strong></p>
+</li>
+<li>Asynchroniczne ładowanie mediów</li>
+<li>Lazy loading</li>
+<li>Optymalizacja CSS</li>
+<li>Minifikacja JavaScript</li>
+</ol>
+<h2>Podsumowanie</h2>
+<p>System generowania kart:
+- Jest w pełni zautomatyzowany
+- Zapewnia wysoką jakość
+- Optymalizuje zasoby
+- Jest łatwo rozszerzalny</p>
+<p>Kluczowe cechy:
+- Czysty kod Python
+- Efektywne przetwarzanie mediów
+- Responsywne szablony
+- Pełna kompatybilność z Anki</p>
+    <footer>
+      <p>Published: <time datetime="2025-09-15T12:30:00+02:00">
+        Mon 15 September 2025
+      </time></p>
+        <address>
+          By             <a href="/author/slawomir-domagala.html">Sławomir Domagała</a>
+        </address>
+        <p>
+          Category: <a href="/category/development.html">development</a>
+        </p>
+        <p>
+          Tags:
+            <a href="/tag/anki.html">anki</a>
+            <a href="/tag/cards.html">cards</a>
+            <a href="/tag/generation.html">generation</a>
+            <a href="/tag/technical.html">technical</a>
+        </p>
+    </footer>
+  </article>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper style1-alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/theme/js/jquery.min.js"></script>
+			<script src="/theme/js/jquery.scrollex.min.js"></script>
+			<script src="/theme/js/jquery.scrolly.min.js"></script>
+			<script src="/theme/js/browser.min.js"></script>
+			<script src="/theme/js/breakpoints.min.js"></script>
+			<script src="/theme/js/util.js"></script>
+			<script src="/theme/js/main.js"></script>
+
+	</body>
+</html>

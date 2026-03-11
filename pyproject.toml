@@ -7,7 +7,7 @@ name = "prawojazdy"
 dynamic = ["version"]
 description = ''
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.12"
 license = "MIT"
 keywords = []
 authors = [
@@ -31,6 +31,7 @@ dependencies = [
     "openpyxl",
     "pandas",
     "pelican",
+    "requests"
 ]
 
 [project.urls]
@@ -67,12 +68,42 @@ exclude_lines = [
   "if TYPE_CHECKING:",
 ]
 
+[tool.hatch.envs.default.env-vars]
+PRAWOJAZDY_CONFIG = "2026_02"
+PRAWOJAZDY_URL = """
+https://www.gov.pl/pliki/mi/multimedia_do_pytan.zip
+https://www.gov.pl/attachment/546279d3-2586-41e2-8912-3f5cab98d31d"""
+PRAWOJAZDY_XLSX = "pytania_egzaminacyjne/katalog_dla_kandydatów_na_kierowców_0220266.xlsx"
+PRAWOJAZDY_VISUALS = "visuals/multimedia do pytań"
+
 [tool.hatch.envs.default.scripts]
-download_visuals = ["./scripts/download_visuals.sh"]
-unpack_visuals = ["./scripts/unpack_visuals.sh"]
-generate_deck = ["""python src/prawojazdy/main.py \
-  katalog_pytania_egzminacyjne_kandydat__14112024.xlsx \
-  "visuals/wizualizacje do pytań_18_01_2024_" \
+download_visuals = ["./scripts/download_multiple_visuals.sh \"$PRAWOJAZDY_CONFIG\" \"$PRAWOJAZDY_URL\""]
+unpack_visuals = ["./scripts/unpack_multiple_visuals.sh \"$PRAWOJAZDY_CONFIG\" \"$PRAWOJAZDY_VISUALS\""]
+generate_deck = ["python --version", """python src/prawojazdy/main.py \
+  "$PRAWOJAZDY_XLSX" \
+  "$PRAWOJAZDY_VISUALS" \
   media \
-  "$([ -f visuals/.unpackaged_new_file ] && echo False || echo True)" """, "rm -f visuals/.unpackaged_new_file"]
+  "$([ -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file ] && echo False || echo True)" \
+  B""", "rm -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file"]
 release = ["download_visuals", "unpack_visuals", "generate_deck"]
+[tool.hatch.envs.deck]
+template = "default"
+
+[[tool.hatch.envs.deck.matrix]]
+config = ["2024_11", "2025_12", "2026_02"]
+
+[tool.hatch.envs.deck.overrides.matrix.config]
+env-vars = [
+  { key = "PRAWOJAZDY_CONFIG", if = ["2024_11"], value = "2024_11" },
+  { key = "PRAWOJAZDY_CONFIG", if = ["2025_12"], value = "2025_12" },
+  { key = "PRAWOJAZDY_CONFIG", if = ["2026_02"], value = "2026_02" },
+  { key = "PRAWOJAZDY_URL", if = ["2024_11"], value = "https://www.gov.pl/pliki/mi/wizualizacje_do_pytan_18_01_2024.zip" },
+  { key = "PRAWOJAZDY_URL", if = ["2025_12"], value = "https://www.gov.pl/pliki/mi/pytania_egzaminacyjne_na_prawo_jazdy_12_2025.zip" },
+  { key = "PRAWOJAZDY_URL", if = ["2026_02"], value = "https://www.gov.pl/pliki/mi/multimedia_do_pytan.zip\nhttps://www.gov.pl/attachment/546279d3-2586-41e2-8912-3f5cab98d31d" },
+  { key = "PRAWOJAZDY_XLSX", if = ["2024_11"], value = "pytania_egzaminacyjne/katalog_pytania_egzminacyjne_kandydat__14112024.xlsx" },
+  { key = "PRAWOJAZDY_XLSX", if = ["2025_12"], value = "pytania_egzaminacyjne/Pytania_egzaminacyjne_na_kierowcę_122025.xlsx" },
+  { key = "PRAWOJAZDY_XLSX", if = ["2026_02"], value = "pytania_egzaminacyjne/katalog_dla_kandydatów_na_kierowców_0220266.xlsx" },
+  { key = "PRAWOJAZDY_VISUALS", if = ["2024_11"], value = "visuals/wizualizacje do pytań_18_01_2024_" },
+  { key = "PRAWOJAZDY_VISUALS", if = ["2025_12"], value = "visuals/Pytania egzaminacyjne na prawo jazdy 2025" },
+  { key = "PRAWOJAZDY_VISUALS", if = ["2026_02"], value = "visuals/multimedia do pytań" },
+]
