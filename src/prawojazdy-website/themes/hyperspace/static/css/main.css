@@ -57,6 +57,11 @@
     h1, h2, h3, h4, h5 {
         text-wrap: nowrap;
     }
+
+    video {
+        min-width: 50vh;
+        max-width: 100%;
+    }
 }
 
 [id="2-how-to-start"] > .inner {
