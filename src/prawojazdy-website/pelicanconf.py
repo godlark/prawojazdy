@@ -40,3 +40,5 @@ ASCIIDOC_CMD = 'asciidoctor'
 
 PLUGIN_PATHS = ['./pelican-plugins']
 PLUGINS = ['asciidoc_reader']
+
+OUTPUT_PATH = '../../docs'
