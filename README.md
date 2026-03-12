@@ -51,6 +51,9 @@ hatch run unpack_visuals
 # Generate study deck from Excel file
 hatch run generate_deck
 
+# Generate a small example deck to test the functionality
+hatch run generate_example_deck
+
 # Complete workflow (download, unpack, generate)
 hatch run release or hatch run deck.2026_02:release
 ```

@@ -16,10 +16,6 @@ authors = [
 classifiers = [
   "Development Status :: 4 - Beta",
   "Programming Language :: Python",
-  "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9",
-  "Programming Language :: Python :: 3.10",
-  "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
@@ -77,14 +73,37 @@ PRAWOJAZDY_XLSX = "pytania_egzaminacyjne/katalog_dla_kandydatów_na_kierowców_0
 PRAWOJAZDY_VISUALS = "visuals/multimedia do pytań"
 
 [tool.hatch.envs.default.scripts]
-download_visuals = ["./scripts/download_multiple_visuals.sh \"$PRAWOJAZDY_CONFIG\" \"$PRAWOJAZDY_URL\""]
-unpack_visuals = ["./scripts/unpack_multiple_visuals.sh \"$PRAWOJAZDY_CONFIG\" \"$PRAWOJAZDY_VISUALS\""]
-generate_deck = ["python --version", """python src/prawojazdy/main.py \
-  "$PRAWOJAZDY_XLSX" \
-  "$PRAWOJAZDY_VISUALS" \
-  media \
-  "$([ -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file ] && echo False || echo True)" \
-  B""", "rm -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file"]
+ensure_downloads = ["mkdir -p downloads"]
+download_visuals = [
+    "ensure_downloads",
+    "./scripts/download_multiple_visuals.sh \"$PRAWOJAZDY_CONFIG\" \"$PRAWOJAZDY_URL\""
+]
+ensure_visuals = ["mkdir -p visuals"]
+unpack_visuals = [
+    "ensure_visuals",
+    "./scripts/unpack_multiple_visuals.sh \"$PRAWOJAZDY_CONFIG\" \"$PRAWOJAZDY_VISUALS\""
+]
+ensure_media = ["mkdir -p media"]
+generate_deck = [
+    "ensure_media",
+    """python src/prawojazdy/main.py \
+    "$PRAWOJAZDY_XLSX" \
+    "$PRAWOJAZDY_VISUALS" \
+    media \
+    "$([ -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file ] && echo False || echo True)" \
+    B""",
+    "rm -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file"]
+generate_example_deck = [
+    "ensure_media",
+    """python src/prawojazdy/main.py \
+    "$PRAWOJAZDY_XLSX" \
+    "$PRAWOJAZDY_VISUALS" \
+    media \
+    "$([ -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file ] && echo False || echo True)" \
+    B \
+    35 \
+    example_prawo_jazdy.apkg""",
+]
 release = ["download_visuals", "unpack_visuals", "generate_deck"]
 [tool.hatch.envs.deck]
 template = "default"

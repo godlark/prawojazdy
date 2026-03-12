@@ -15,7 +15,7 @@ def take_first_n_rows(df: pd.DataFrame, n: int) -> Iterator[pd.Series]:
         yield row
 
 
-def main(exam_questions_xlsx, downloaded_media_dir, new_media_dir, skip_existing_media, category):
+def main(exam_questions_xlsx, downloaded_media_dir, new_media_dir, skip_existing_media, category, n=-1, filename="prawo_jazdy.apkg"):
     df = pd.read_excel(exam_questions_xlsx)
     df = df.dropna(how="all")
     df_filtered = df[df["Kategorie"].str.split(",").apply(lambda x: category in x)]
@@ -25,7 +25,7 @@ def main(exam_questions_xlsx, downloaded_media_dir, new_media_dir, skip_existing
     # #typeans
 
     print(f"skip_existing_media: {skip_existing_media}")
-    deck, media_files = generate_deck(take_first_n_rows(df_filtered, -1), downloaded_media_dir, new_media_dir)
+    deck, media_files = generate_deck(take_first_n_rows(df_filtered, n), downloaded_media_dir, new_media_dir)
 
     media_file_idx_to_path = dict(enumerate(media_files))
     media_json = {idx: os.path.basename(path) for idx, path in media_file_idx_to_path.items()}
@@ -33,8 +33,11 @@ def main(exam_questions_xlsx, downloaded_media_dir, new_media_dir, skip_existing
     print(media_file_idx_to_path)
 
     package = genanki.Package(deck, media_files=media_files)
-    package.write_to_file("prawo_jazdy.apkg")
+    package.write_to_file(filename)
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+    if len(sys.argv) > 6:
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], int(sys.argv[6]), sys.argv[7])
+    else:
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
