@@ -91,7 +91,7 @@ generate_deck = [
     "$PRAWOJAZDY_VISUALS" \
     media \
     "$([ -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file ] && echo False || echo True)" \
-    B""",
+    {args:B}""",
     "rm -f visuals/.$PRAWOJAZDY_CONFIG.unpacked_new_file"]
 generate_example_deck = [
     "ensure_media",

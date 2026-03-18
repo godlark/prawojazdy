@@ -6,5 +6,5 @@ __pycache__
 .DS_Store
 .idea
 *.log
-prawo_jazdy.apkg
+prawo_jazdy*.apkg
 .env_variable

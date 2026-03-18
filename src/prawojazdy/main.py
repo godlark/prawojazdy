@@ -40,4 +40,4 @@ if __name__ == "__main__":
     if len(sys.argv) > 6:
         main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], int(sys.argv[6]), sys.argv[7])
     else:
-        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+        main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5], -1, f"prawo_jazdy_{sys.argv[5]}.apkg")

@@ -51,6 +51,8 @@ hatch run unpack_visuals
 # Generate study deck from Excel file
 hatch run generate_deck
 
+hatch run generate_deck -- A
+
 # Generate a small example deck to test the functionality
 hatch run generate_example_deck
 
